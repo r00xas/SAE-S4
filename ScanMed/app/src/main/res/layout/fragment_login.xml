@@ -37,20 +37,34 @@
             android:background="@drawable/shape_login"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editTextTextEmailAddress"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
+                android:layout_gravity="center_vertical"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="40dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:padding="10dp"
-                android:hint="Email"
-                android:elevation="20dp"
-                android:background="@drawable/shape_typing"
-                android:inputType="textEmailAddress" />
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email :"/>
+
+                <EditText
+                    android:id="@+id/editTextTextEmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:padding="10dp"
+                    android:hint="ex : youremail@gmail.com"
+                    android:elevation="20dp"
+                    android:background="@drawable/shape_typing"
+                    android:inputType="textEmailAddress" />
+
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/editTextTextPassword"
