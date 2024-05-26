@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_small_size">11sp</dimen>
+    <dimen name="shadow_size">8dp</dimen>
+    <dimen name="Info_espacement">8dp</dimen>
+    <dimen name="Info_espacement_texte">10dp</dimen>
+    <dimen name="Info_marginBottom">16dp</dimen>
+    <dimen name="Info_EditText">6dp</dimen>
+    <dimen name="but_layout_width">300dp</dimen>
+    <dimen name="but_layout_height">60dp</dimen>
+    <dimen name="text_normal_size">20dp</dimen>
+    <dimen name="text_small_size_plus">12sp</dimen>
+    <dimen name="text_large_size">24sp</dimen>
+
+</resources>
