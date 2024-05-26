@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Test_java_app</string>
+    <string name="en_TV_username">Nom d’utilisateur</string>
+    <string name="en_TV_mail">Email</string>
+    <string name="en_TV_password">Mot de passe</string>
+    <string name="en_CheckBox1">J\'accepte que les informations saisies soient utilisées pour signaler un médicament.</string>
+    <string name="en_CheckBox2">J\'accepte de recevoir les mises à jour de mes signalements par email.</string>
+    <string name="en_Signin">Inscription</string>
+    <string name="en_TV_question">Vous avez un compte ?</string>
+    <string name="en_TV_login">Connexion</string>
+    <string name="en_loading">Chargement ...</string>
+    <string name="help_center">Centre d’Aide</string>
+    <string name="hello">Bonjour, comment pouvons  nous vous aider ?</string>
+    <string name="topic">Sujets</string>
+    <string name="account">Accueil</string>
+    <string name="reset_password">Changer le mot de passe</string>
+    <string name="change_language">Changer la langue</string>
+    <string name="edit_and_delete_account">Modifier ou supprimer le compte</string>
+    <string name="email_management">Gestion de l’email</string>
+    <string name="report_nmanagement">Gestion des \nsignalements</string>
+    <string name="edit_a_report">Modifier un signalement</string>
+    <string name="delete_a_report">Annuler un signalement</string>
+    <string name="technical_support">Support technique \n&amp; Contact</string>
+    <string name="report_a_problem">"Signaler un problème "</string>
+    <string name="report_a_security_vulnerability">Signaler une faille de sécurité</string>
+    <string name="contact_support">Contactez le support</string>
+    <string name="guide">Guide</string>
+    <string name="welcome">Bienvenue chez ScanMed !</string>
+    <string name="description">Simple et pratique, ScanMed est la meilleure solution pour signaler les médicaments en pénurie dans les pharmacies proches de chez vous.</string>
+    <string name="summary">SOMMAIRE</string>
+    <string name="summary_1">1. Signaler un médicament</string>
+    <string name="summary_2">"2. Afficher votre historique "</string>
+    <string name="summary_3">"3. Modifier vos réglages "</string>
+    <string name="summary_4">4. Obtenir de l\'aide</string>
+    <string name="pls_click">Veuillez cliquer sur l\'un des titres pour être redirigé(e).</string>
+    <string name="report_a_medication">1. Signaler un médicament</string>
+    <string name="click_on_the_button">● Cliquez sur le bouton <b>« + »</b> en bas de la page d\'accueil.</string>
+    <string name="choose_a_method">● Choisissez une méthode pour identifier le médicament en pénurie :</string>
+    <string name="document_directly_download">● <b>Fichier </b>: Téléchargez directement le DataMatrix présent sur un document PDF.</string>
+    <string name="scan_the_datamatrix">● <b>Scan</b> : Scannez le DataMatrix sur la boîte du médicament à l\'aide de l\'appareil photo.</string>
+    <string name="enter_the_cip_code">● <b>CIP</b> : Enter the CIP code found on the medication box.</string>
+    <string name="select_the_pharmacy">● Sélectionnez la pharmacie où le médicament est en pénurie.</string>
+    <string name="check_the_description">● Vérifiez la description du médicament et la pharmacie sélectionnée.</string>
+    <string name="send_your_report">● Validez votre signalement.</string>
+    <string name="there_you_go">● Et voilà  !</string>
+    <string name="view_your_report_history">2. Afficher votre historique</string>
+    <string name="click_on_the_history_button">● Cliquez sur le bouton <b>« Historique »</b> en bas de la page.</string>
+    <string name="view_the_processing">● Visualisez l’état de traitement de vos signalements en temps réel.</string>
+    <string name="different_statuses_can_be_given_to_a_report">"Un signalement peut avoir différents statuts : "</string>
+    <string name="verification_your_report"><b><font color="#3054EB">● “Vérification”</font></b>: Votre signalement est en cours de vérification par l\'administrateur ScanMed.</string>
+    <string name="canceled_your_report"><b><font color="#FF0000">● “Annulé” </font></b>: Votre signalement n\'a pas été confirmé par l\'administrateur.</string>
+    <string name="in_restocking"><b><font color="#EBCD30">● “En réapprovisionnement”</font></b>: Le processus de réapprovisionnement du médicament que vous avez signalé est en cours.</string>
+    <string name="restocked_the_medication"><b><font color="#53C31B">● “Réapprovisionné”</font></b>: Le médicament que vous avez signalé est à présent disponible en pharmacie !</string>
+    <string name="change_your_account_settings">3. Modifier vos réglages</string>
+    <string name="click_on_the_settings_button">● Cliquez sur le bouton <b>« Réglages »</b> au milieu de la page d’accueil.</string>
+    <string name="acquire_help">4. Obtenir de l\'aide</string>
+    <string name="click_on_the_button_in_the_middle">● Cliquez sur le bouton <b>« ? »</b> au milieu de la page.</string>
+    <string name="find_an_item_that_meets_your_needs">● Trouvez un article qui répond à vos besoins.</string>
+    <string name="if_you_do_not_find">● Si vous ne trouvez pas de réponse satisfaisante ici, vous pouvez contacter l\'administrateur ScanMed en cliquant sur « Contacter l\'administrateur ».</string>
+    <string name="reset_password_order">Saisissez l’adresse email rattachée à votre compte afin que nous puissions vous transmettre les instructions pour réinitialiser votre mot de passe.</string>
+    <string name="mail_hint">Saisissez votre adresse email</string>
+    <string name="remember_password">Vous vous souvenez de votre mot de passe ? </string>
+    <string name="login">Connexion</string>
+    <string name="ask_reset_password">Demander la réinitialisation</string>
+    <string name="create_password">Créer un nouveau mot de passe</string>
+    <string name="create_password_order">Créer un nouveau mot de passer pour vous connecter et accéder à ScanMed.</string>
+    <string name="new_password">Nouveau mot de passe</string>
+    <string name="new_password_order">Votre mot de passe doit avoir au moins 8 caractères et doit contenir des lettres minuscules, des lettres majuscules, des chiffres et des caractères spéciaux
+(!$@%).</string>
+    <string name="confirmation_password">Confirmation du mot de passe</string>
+    <string name="confirmation_password_order">Les mots de passe doivent correspondre.</string>
+    <string name="confirmation_change_password_order">Le nouveau mot de passe et la confirmation du mot de passe doivent correspondre.</string>
+    <string name="change_password">Changer le mot de passe</string>
+    <string name="changed_password">Votre mot de passe a été changé avec succès !</string>
+    <string name="account_settings_password">Modifier le mot de passe</string>
+    <string name="account_settings_password_order">Assurez-vous de suivre toutes les instructions lors de la création de votre nouveau mot de passe.</string>
+    <string name="current_password">Mot de passe actuel</string>
+    <string name="current_password_order">Saisissez le mot de passe que vous utilisez actuellement pour vous connecter.</string>
+    <string name="save">Enregistrer</string>
+    <string name="modified_password">Votre mot de passe a été modifié avec succès !</string>
+    <string name="home">Retour à l’acceuil</string>
+    <string name="account_settings">Réglages du compte</string>
+    <string name="modify_account_settings">Modifier le compte</string>
+    <string name="modify_account_settings_order">Vous pouvez modifier votre nom d\'utilisateur, votre email et votre mot de passe.</string>
+    <string name="user_name">Nom d\'utilisateur</string>
+    <string name="mail">Email</string>
+    <string name="password">Mot de passe</string>
+</resources>

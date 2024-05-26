@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GuideFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rectangle_fond"
+        tools:context=".MainActivity">
+
+
+        <Button
+            android:id="@+id/IMG_Back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/arrow_back"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2H_Back"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2V_Back"
+            app:layout_constraintStart_toStartOf="@+id/guideline1V_Back"
+            app:layout_constraintTop_toTopOf="@+id/guideline1H_Back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/guide"
+            android:textColor="@color/other_grey"
+            android:textSize="@dimen/text_normal_size"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2H_Back"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2V_Guide"
+            app:layout_constraintStart_toStartOf="@+id/guideline1V_Guide"
+            app:layout_constraintTop_toTopOf="@+id/guideline1H_Back" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="80dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+
+            <ScrollView
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/IMG_LOGO"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:alpha="0.9"
+                        android:src="@drawable/logo"
+                        app:layout_constraintDimensionRatio="1:1" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:gravity="center"
+                        android:text="@string/welcome"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center"
+                        android:text="@string/description"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_small_size" />
+
+                    <LinearLayout
+                        android:layout_width="330dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/rectangle_summary"
+                        android:elevation="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@string/summary"
+                            android:textColor="@color/logo" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/summary_section1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="@string/summary_1"
+                                android:textColor="@color/logo" />
+
+                            <TextView
+                                android:id="@+id/summary_section2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="@string/summary_2"
+                                android:textColor="@color/logo" />
+
+                            <TextView
+                                android:id="@+id/summary_section3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="@string/summary_3"
+                                android:textColor="@color/logo" />
+
+                            <TextView
+                                android:id="@+id/summary_section4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="@string/summary_4"
+                                android:textColor="@color/logo" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="11dp"
+                            android:alpha="0.7"
+                            android:background="@drawable/baseline_info_outline_24"
+                            app:layout_constraintDimensionRatio="1:1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="@string/pls_click"
+                            android:textColor="@color/grey"
+                            android:textSize="10sp"
+                            android:textStyle="italic" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/section1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@string/report_a_medication"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/click_on_the_button"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/choose_a_method"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="28dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/document_directly_download"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="28dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/scan_the_datamatrix"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="28dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/enter_the_cip_code"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/select_the_pharmacy"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/check_the_description"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/send_your_report"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/there_you_go"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/logo" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/section2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@string/view_your_report_history"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/click_on_the_history_button"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/view_the_processing"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/different_statuses_can_be_given_to_a_report"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="28dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/verification_your_report"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="28dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/canceled_your_report"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="28dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/in_restocking"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="28dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/restocked_the_medication"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/logo" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/section3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@string/change_your_account_settings"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/click_on_the_settings_button"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/logo" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/section4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@string/acquire_help"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/click_on_the_button_in_the_middle"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/find_an_item_that_meets_your_needs"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/if_you_do_not_find"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_small_size_plus" />
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/logo" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1V_Back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2V_Back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1H_Back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.04" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2H_Back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.075" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1V_Guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2V_Guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.7" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

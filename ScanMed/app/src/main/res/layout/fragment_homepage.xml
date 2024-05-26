@@ -28,7 +28,11 @@
             android:layout_margin="70dp"
             android:src="@drawable/_63b66bbb9f73cf6807d08f8b33e53ea" />
 
-        <Button
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <Button
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="66dp"
@@ -39,16 +43,20 @@
             android:text="Connexion"
             app:cornerRadius="10dp" />
 
-        <Button
-            android:id="@+id/buttonRegister"
-            android:layout_width="match_parent"
-            android:layout_height="66dp"
-            android:backgroundTint="#49BFD8"
-            android:shadowDy="4"
-            android:text="Inscription"
-            android:layout_marginTop="5dp"
-            android:elevation="20dp"
-            app:cornerRadius="10dp" />
+            <Button
+                android:id="@+id/buttonRegister"
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                android:backgroundTint="#49BFD8"
+                android:shadowDy="4"
+                android:text="Inscription"
+                android:layout_marginTop="5dp"
+                android:elevation="20dp"
+                app:cornerRadius="10dp" />
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
