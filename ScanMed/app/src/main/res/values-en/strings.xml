@@ -90,4 +90,7 @@
     <string name="TV_setting">Settings</string>
     <string name="TV_help">Guide</string>
     <string name="TV_ongoing">Ongoing treatment</string>
+    <string name="cip">CIP</string>
+    <string name="scan">Scan</string>
+    <string name="file">File</string>
 </resources>
