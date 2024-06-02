@@ -1,5 +1,6 @@
 package com.example.scanmed;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.scanmed.databinding.FragmentHomepageBinding;
 
@@ -64,6 +66,37 @@ public class HomepageFrag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentHomepageBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+
+        View view = binding.getRoot();
+
+        // Find the button by its ID
+        Button btnConnexion = view.findViewById(R.id.buttonLogin);
+
+        // Set a click listener on the button
+        btnConnexion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start a fragment transaction to replace HomepageFrag with LoginFragment
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new LoginFragment())
+                        .addToBackStack(null) // Add transaction to back stack to enable back navigation
+                        .commit();
+            }
+        });
+
+        // Find the button by its ID
+        Button btnInscription = view.findViewById(R.id.buttonRegister);
+
+        // Set a click listener on the button
+        btnInscription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start SignInActivity
+                Intent intent = new Intent(getActivity(), HistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        return view;
     }
 }

@@ -84,4 +84,11 @@
     <string name="user_name">Nom d\'utilisateur</string>
     <string name="mail">Email</string>
     <string name="password">Mot de passe</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="TV_logout">Log out</string>
+    <string name="TV_welcome">Welcome back !</string>
+    <string name="TV_user">User</string>
+    <string name="TV_setting">Settings</string>
+    <string name="TV_help">Guide</string>
+    <string name="TV_ongoing">Ongoing treatment</string>
 </resources>

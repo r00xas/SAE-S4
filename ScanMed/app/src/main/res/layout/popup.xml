@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/popup_menu.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="92dp"
+    android:paddingStart="76dp"
+    android:paddingEnd="74dp"
+    android:paddingBottom="70dp">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginEnd="25dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="File"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_gravity="center"
+            android:textColor="@color/logo"/>
+
+        <ImageButton
+            android:id="@+id/option1"
+            android:layout_width="70dp"
+            android:layout_gravity="center"
+            android:layout_height="70dp"
+            android:elevation="10dp"
+            android:src="@drawable/doc_plus"
+            android:scaleType="centerCrop"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Option 1" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginEnd="25dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_gravity="center"
+            android:textColor="@color/logo"/>
+
+        <ImageButton
+            android:id="@+id/option2"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:elevation="10dp"
+            android:src="@drawable/scan_doc"
+            android:scaleType="centerCrop"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Option 2" />
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginEnd="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_gravity="center"
+            android:textColor="@color/logo"/>
+
+
+        <ImageButton
+            android:id="@+id/option3"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/data_jsp"
+            android:elevation="10dp"
+            android:scaleType="centerCrop"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Option 3"/>
+
+    </LinearLayout>
+
+</LinearLayout>

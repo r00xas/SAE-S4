@@ -9,4 +9,9 @@
     <color name="blue_fonce">#05515A</color>
     <color name="bleu_log">#005ECA</color>
     <color name="logo">#015D67</color>
+    <color name="blue">#49C0D9</color>
+    <color name="dark_blue">#3054EB</color>
+    <color name="yellow">#EBCD30</color>
+    <color name="red">#FA541C</color>
+    <color name="green">#53C31B</color>
 </resources>

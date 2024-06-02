@@ -43,12 +43,11 @@ public class PasswordChangedFragment extends Fragment {
         binding.buttonBackHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragment_manager = getParentFragmentManager();
-                FragmentTransaction fragment_transaction = fragment_manager.beginTransaction();
-                HomepageFrag homepage_fragment = new HomepageFrag();
-                fragment_transaction.replace(R.id.main, homepage_fragment);
-                fragment_transaction.addToBackStack(null);
-                fragment_transaction.commit();
+                // Start a fragment transaction to replace HomepageFrag with LoginFragment
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new HomepageFrag())
+                        .addToBackStack(null) // Add transaction to back stack to enable back navigation
+                        .commit();
             }
         });
     }
