@@ -38,24 +38,22 @@ public class ResetPasswordFragment extends Fragment {
         binding.buttonReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragment_manager = getParentFragmentManager();
-                FragmentTransaction fragment_transaction = fragment_manager.beginTransaction();
-                CreatePasswordFragment create_password_fragment = new CreatePasswordFragment();
-                fragment_transaction.replace(R.id.main, create_password_fragment);
-                fragment_transaction.addToBackStack(null);
-                fragment_transaction.commit();
+                // Start a fragment transaction to replace LoginFragment with ResetPasswordFragment
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new CreatePasswordFragment())
+                        .addToBackStack(null) // Add transaction to back stack to enable back navigation
+                        .commit();
             }
         });
 
         binding.buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragment_manager = getParentFragmentManager();
-                FragmentTransaction fragment_transaction = fragment_manager.beginTransaction();
-                HomepageFrag homepage_frag = new HomepageFrag();
-                fragment_transaction.replace(R.id.main, homepage_frag);
-                fragment_transaction.addToBackStack(null);
-                fragment_transaction.commit();
+                // Start a fragment transaction to replace LoginFragment with ResetPasswordFragment
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new LoginFragment())
+                        .addToBackStack(null) // Add transaction to back stack to enable back navigation
+                        .commit();
             }
         });
     }

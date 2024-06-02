@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +60,23 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
+
+        // Find the TextView by its ID
+        TextView textViewForgotPassword = view.findViewById(R.id.textView3);
+
+        // Set a click listener on the TextView
+        textViewForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start a fragment transaction to replace LoginFragment with ResetPasswordFragment
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new ResetPasswordFragment())
+                        .addToBackStack(null) // Add transaction to back stack to enable back navigation
+                        .commit();
+            }
+        });
+
+        return view;
     }
 }

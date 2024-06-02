@@ -43,12 +43,11 @@ public class CreatePasswordFragment extends Fragment {
         binding.buttonAskReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragment_manager = getParentFragmentManager();
-                FragmentTransaction fragment_transaction = fragment_manager.beginTransaction();
-                PasswordChangedFragment password_changed_fragment = new PasswordChangedFragment();
-                fragment_transaction.replace(R.id.main, password_changed_fragment);
-                fragment_transaction.addToBackStack(null);
-                fragment_transaction.commit();
+                // Start a fragment transaction to replace CreatePasswordFragment with ResetPasswordFragment
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new PasswordChangedFragment())
+                        .addToBackStack(null) // Add transaction to back stack to enable back navigation
+                        .commit();
             }
         });
     }

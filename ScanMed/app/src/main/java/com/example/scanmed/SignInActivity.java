@@ -1,7 +1,6 @@
 package com.example.scanmed;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -25,7 +24,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Locale;
 
-public class SignInFragment extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
     private static final int NB_CHARAC_PASSWORD = 8;
     private boolean isLanguageChanged = false;
 
