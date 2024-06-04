@@ -34,6 +34,10 @@
 
         <activity android:name=".HistoryActivity"></activity>
 
+        <activity android:name=".GuideFragment"></activity>
+
+        <activity android:name=".HelpCenterFragment"></activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

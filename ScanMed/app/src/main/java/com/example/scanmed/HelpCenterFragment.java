@@ -20,6 +20,7 @@ public class HelpCenterFragment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         loadLocale();
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_help_center);
         EdgeToEdge.enable(this);
     }
 

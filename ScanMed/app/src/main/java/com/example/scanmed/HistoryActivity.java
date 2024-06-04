@@ -1,5 +1,6 @@
 package com.example.scanmed;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -10,6 +11,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -39,6 +41,52 @@ public class HistoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showPopupMenu(v);
+            }
+        });
+
+        ImageView IV_Settings = findViewById(R.id.IV_Settings);
+        /**
+         * Faut avoir la page settings
+         */
+        /*IV_Settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HistoryActivity.this, COMPLETER_ICI.class);
+                startActivity(intent);
+                finish();
+            }
+        });*/
+
+        ImageView IV_Help = findViewById(R.id.IV_Help);
+        /**
+         * Faut avoir où aller
+         */
+        /*IV_Settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HistoryActivity.this, COMPLETER_ICI.class);
+                startActivity(intent);
+                finish();
+            }
+        });*/
+
+        LinearLayout LL_Home = findViewById(R.id.LL_Home);
+        LL_Home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HistoryActivity.this, HomeMenuActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        LinearLayout LL_History = findViewById(R.id.LL_History);
+        LL_History.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HistoryActivity.this, HistoryActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

@@ -4,7 +4,7 @@
     <string name="en_TV_username">Username</string>
     <string name="en_TV_mail">Email</string>
     <string name="en_TV_password">Password</string>
-    <string name="en_CheckBox1">I accept that the information entered will be used for medication reporting.</string>
+    <string name="en_CheckBox1">I accept that the information entered will be used to manage my account and notify me of any changes in the status of my reports, in accordance with our privacy policy.</string>
     <string name="en_CheckBox2">I accept to receive updates to my reports by email.</string>
     <string name="en_Signin">Sign In</string>
     <string name="en_TV_question">You have an account ?</string>
@@ -90,4 +90,5 @@
     <string name="TV_setting">Settings</string>
     <string name="TV_help">Guide</string>
     <string name="TV_ongoing">Ongoing treatment</string>
+    <string name="Error_SignIn">Error in the information provided</string>
 </resources>

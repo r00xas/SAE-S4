@@ -1,12 +1,14 @@
 package com.example.scanmed;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +35,7 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         loadLocale();
         EdgeToEdge.enable(this);
+        setContentView(R.layout.fragment_sign_in);
         super.onCreate(savedInstanceState);
 
         Spinner spinner = findViewById(R.id.spinner);
@@ -50,6 +54,14 @@ public class SignInActivity extends AppCompatActivity {
 
         TextView TV_Login = findViewById(R.id.TV_login);
 
+        TV_Login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignInActivity.this, HomepageFrag.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -80,8 +92,10 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (Check_sign_In()){
-                    //la suite
-                    return;
+                    send_to_back();
+                    Intent intent = new Intent(SignInActivity.this, HomeMenuActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -92,6 +106,12 @@ public class SignInActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    private void send_to_back() {
+        /**
+         * fonction qui envoie au back les infos pour créer un nouveau compte
+         */
     }
 
     private void restartActivity() {
@@ -148,13 +168,13 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private boolean Check_mail(EditText ettMail) {
-        return true;
+        return true;        //connexion au back pour vérifier si pas déjà utilisé
     }
 
     //ajouter des caractères à ne pas utiliser
     private boolean Check_password(EditText ettPassword) {
-        String password = ettPassword.toString();
-        return (!(password.isEmpty()) && (password.length() > NB_CHARAC_PASSWORD) && (password.contains("<")));
+        String password = ettPassword.getText().toString();
+        return (!(password.isEmpty()) && (password.length() > NB_CHARAC_PASSWORD) && !((password.contains("<")) && (password.contains(">")) && (password.contains("+")) && (password.contains("*"))));
     }
 
     //Voir si il faut que les deux soient check ou pas
@@ -163,9 +183,7 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void Show_Error_SignIn(){
-        /**
-         * Ecris dans un texteView déjà présent le message d'error dans la font en italique en rouge
-         */
+        Toast.makeText(this, R.string.Error_SignIn, Toast.LENGTH_SHORT).show();
     }
 
 

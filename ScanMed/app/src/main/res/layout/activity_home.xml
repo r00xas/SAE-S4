@@ -21,12 +21,14 @@
         app:layout_constraintTop_toTopOf="@+id/guideline_Logout_O">
 
         <ImageView
+            android:id="@+id/IV_LogOut"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/logout"
             app:layout_constraintDimensionRatio="1:1" />
 
         <TextView
+            android:id="@+id/TV_LogOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
@@ -62,6 +64,7 @@
         app:layout_constraintTop_toBottomOf="@+id/guideline_welcome_U" />
 
     <TextView
+        android:id="@+id/TV_User"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
@@ -86,6 +89,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline_button_O">
 
         <RelativeLayout
+            android:id="@+id/RL_Settings"
             android:layout_width="@dimen/Layout_elements_width"
             android:layout_height="@dimen/Layout_elements_height">
 
@@ -105,11 +109,12 @@
                 android:paddingEnd="13dp"
                 android:textColor="@color/black"
                 android:text="@string/TV_setting"
-                android:textSize="@dimen/text_normal_size" />
+                android:textSize="@dimen/text_normal_size_sp" />
 
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/RL_Guide"
             android:layout_width="@dimen/Layout_elements_width"
             android:layout_height="@dimen/Layout_elements_height">
 
@@ -129,12 +134,12 @@
                 android:paddingEnd="25dp"
                 android:textColor="@color/black"
                 android:text="@string/TV_help"
-                android:textSize="@dimen/text_normal_size" />
+                android:textSize="@dimen/text_normal_size_sp" />
 
         </RelativeLayout>
 
         <ImageView
-            android:id="@+id/imageViewCircle"
+            android:id="@+id/IV_circle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
@@ -202,6 +207,7 @@
 
 
         <LinearLayout
+            android:id="@+id/LL_Home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
@@ -240,6 +246,7 @@
 
 
         <LinearLayout
+            android:id="@+id/LL_History"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
