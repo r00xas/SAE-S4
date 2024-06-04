@@ -11,6 +11,7 @@
 
 
     <LinearLayout
+        android:id="@+id/LL_LogOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -94,6 +95,7 @@
             android:layout_height="@dimen/Layout_elements_height">
 
             <ImageView
+                android:id="@+id/IV_Settings"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/rectangle_setting"
@@ -119,6 +121,7 @@
             android:layout_height="@dimen/Layout_elements_height">
 
             <ImageView
+                android:id="@+id/IV_Guide"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/rectangle_help"
@@ -139,7 +142,7 @@
         </RelativeLayout>
 
         <ImageView
-            android:id="@+id/IV_circle"
+            android:id="@+id/IV_Help"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
@@ -215,7 +218,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/IV_Home"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/home" />
@@ -254,7 +257,7 @@
             android:layout_marginStart="300dp">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/IV_History"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/time_machine" />

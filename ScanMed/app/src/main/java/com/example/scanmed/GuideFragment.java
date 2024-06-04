@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -74,6 +75,22 @@ public class GuideFragment extends AppCompatActivity {
                 Intent intent = new Intent(GuideFragment.this, HomeMenuActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        IMG_Back.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IMG_Back.setAlpha(0.5f);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IMG_Back.setAlpha(1f);
+                        break;
+                }
+                return false;
             }
         });
 

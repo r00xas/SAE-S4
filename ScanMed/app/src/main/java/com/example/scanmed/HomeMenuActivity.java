@@ -12,6 +12,7 @@ import android.text.style.UnderlineSpan;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -53,16 +54,7 @@ public class HomeMenuActivity extends AppCompatActivity {
             }
         });
 
-        ImageView IV_LogOut = findViewById(R.id.IV_LogOut);
 
-        IV_LogOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeMenuActivity.this, HomepageFrag.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
         ImageButton button = findViewById(R.id.img_button_plus);
         button.setOnClickListener(new View.OnClickListener() {
@@ -75,8 +67,8 @@ public class HomeMenuActivity extends AppCompatActivity {
         /**
          * Besoin de la page settings
          */
-        /*RelativeLayout RL_Settings = findViewById(R.id.RL_Settings);
-        RL_Settings.setOnClickListener(new View.OnClickListener() {
+        RelativeLayout RL_Settings = findViewById(R.id.RL_Settings);
+        /*RL_Settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeMenuActivity.this, COMPLETER_ICI.class);
@@ -84,6 +76,24 @@ public class HomeMenuActivity extends AppCompatActivity {
                 finish();
             }
         });*/
+        ImageView IV_Settings = findViewById(R.id.IV_Settings);
+        RL_Settings.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IV_Settings.setImageAlpha(128);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IV_Settings.setImageAlpha(255);
+                        break;
+                }
+                return false;
+            }
+        });
+
+
 
         RelativeLayout RL_Guide = findViewById(R.id.RL_Guide);
         RL_Guide.setOnClickListener(new View.OnClickListener() {
@@ -94,19 +104,50 @@ public class HomeMenuActivity extends AppCompatActivity {
                 finish();
             }
         });
+        ImageView IV_Guide = findViewById(R.id.IV_Guide);
+        RL_Guide.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IV_Guide.setImageAlpha(128);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IV_Guide.setImageAlpha(255);
+                        break;
+                }
+                return false;
+            }
+        });
 
-        /**
-         * Besoin de savoir où ça va
-         */
-        /*ImageView IV_circle = findViewById(R.id.IV_circle);
+        ImageView IV_circle = findViewById(R.id.IV_Help);
         IV_circle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeMenuActivity.this, COMPLETER_ICI.class);
+                Intent intent = new Intent(HomeMenuActivity.this, HelpCenterFragment.class);
                 startActivity(intent);
                 finish();
             }
-        });*/
+        });
+
+        IV_circle.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IV_circle.setImageAlpha(128);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IV_circle.setImageAlpha(255);
+                        break;
+                }
+                return false;
+            }
+        });
+
+        ImageView IV_Home = findViewById(R.id.IV_Home);
 
         LinearLayout LL_Home = findViewById(R.id.LL_Home);
         LL_Home.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +159,25 @@ public class HomeMenuActivity extends AppCompatActivity {
             }
         });
 
+        LL_Home.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IV_Home.setImageAlpha(128);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IV_Home.setImageAlpha(255);
+                        break;
+                }
+                return false;
+            }
+        });
+
+        ImageView IV_History = findViewById(R.id.IV_History);
+
+
         LinearLayout LL_History = findViewById(R.id.LL_History);
         LL_History.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +185,48 @@ public class HomeMenuActivity extends AppCompatActivity {
                 Intent intent = new Intent(HomeMenuActivity.this, HistoryActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        LL_History.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IV_History.setImageAlpha(128);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IV_History.setImageAlpha(255);
+                        break;
+                }
+                return false;
+            }
+        });
+
+        LinearLayout LL_LogOut = findViewById(R.id.LL_LogOut);
+        LL_LogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeMenuActivity.this, HomepageFrag.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        ImageView IV_LogOut = findViewById(R.id.IV_LogOut);
+        LL_LogOut.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IV_LogOut.setImageAlpha(128);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IV_LogOut.setImageAlpha(255);
+                        break;
+                }
+                return false;
             }
         });
 
