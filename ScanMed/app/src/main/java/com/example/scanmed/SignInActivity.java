@@ -146,8 +146,6 @@ public class SignInActivity extends AppCompatActivity {
         TV.setText(spannableString);
     }
 
-
-    // problème au niveau de l'affichage, ils vont se superposer donc juste un message global avec rappel ?
     private boolean Check_sign_In(){
         EditText ETT_username = findViewById(R.id.ETT_username);
         EditText ETT_mail = findViewById(R.id.ETT_mail);
@@ -156,19 +154,27 @@ public class SignInActivity extends AppCompatActivity {
         CheckBox id_CheckBox2 = findViewById(R.id.id_CheckBox2);
         boolean everythinkCheck = true;
 
-        if(!Check_username(ETT_username) || !Check_mail(ETT_mail) || !Check_password(ETT_password) || !Check_CheckBox(id_CheckBox1, id_CheckBox2)){
+        /*if(!Check_username(ETT_username) || !Check_mail(ETT_mail) || !Check_password(ETT_password) || !Check_CheckBox(id_CheckBox1, id_CheckBox2)){
             everythinkCheck = false;
             Show_Error_SignIn();
-        }
+        }*/
         return everythinkCheck;
     }
 
     private boolean Check_username(EditText ettUsername) {
-        return true;
+        return ettUsername.getText().toString().isEmpty();
     }
 
     private boolean Check_mail(EditText ettMail) {
-        return true;        //connexion au back pour vérifier si pas déjà utilisé
+        String mail = ettMail.getText().toString();
+        if(mail.isEmpty() || !(mail.contains("@") && mail.contains(".")) && countOccurrences(mail,'@') == 1){
+            return false;
+        }
+
+
+        //connexion au back pour vérifier si pas déjà utilisé
+
+        return true;
     }
 
     //ajouter des caractères à ne pas utiliser
@@ -184,6 +190,16 @@ public class SignInActivity extends AppCompatActivity {
 
     private void Show_Error_SignIn(){
         Toast.makeText(this, R.string.Error_SignIn, Toast.LENGTH_SHORT).show();
+    }
+
+    public static int countOccurrences(String str, char ch) {
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ch) {
+                count++;
+            }
+        }
+        return count;
     }
 
 

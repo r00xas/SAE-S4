@@ -93,4 +93,13 @@
     <string name="TV_help">Guide</string>
     <string name="TV_ongoing">Traitement en cours</string>
     <string name="Error_SignIn">Erreur dans les informations mises</string>
+    <string name="edit_your_picture">"Modifier votre photo "</string>
+    <string name="save_picture">Enregistrer</string>
+    <string name="terms_of_use">CGU</string>
+    <string name="terms_of_use_grand">CGU</string>
+    <string name="terms_of_use_scan_med">Conditions Générales d\'Utilisation de Scan Med</string>
+    <string name="article_1_object">Article 1 : Objectifs</string>
+    <string name="these_t_amp_cs_or_general">Les présentes CGU ou Conditions Générales d’Utilisation régissent juridiquement l’utilisation des services de l’application mobile ScanMed (ci-après dénommé « l’application »). Constituant le contrat entre la société ScanMed et l\'utilisateur, l\'accès à l’application doit être précédé de l\'acceptation des présentes CGU. L’accès à cette plateforme vaut acceptation des présentes CGU.</string>
+    <string name="article_2_collection_of_data">Article 2 : Collecte des données</string>
+    <string name="for_the_creation_of_the_user">Pour la création du compte de l\'utilisateur, la collecte des informations lors de l\'inscription sur le site est nécessaire et obligatoire. Conformément à la loi n° 78-17 du 6 janvier relative à l\'informatique, aux fichiers et aux libertés, la collecte et le traitement des informations nominatives sont effectués dans le respect de la vie privée.</string>
 </resources>

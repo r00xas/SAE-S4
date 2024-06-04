@@ -91,4 +91,13 @@
     <string name="TV_help">Guide</string>
     <string name="TV_ongoing">Ongoing treatment</string>
     <string name="Error_SignIn">Error in the information provided</string>
+    <string name="edit_your_picture">Edit your picture</string>
+    <string name="save_picture">Save</string>
+    <string name="terms_of_use">Terms of Use</string>
+    <string name="terms_of_use_grand">Terms of Use</string>
+    <string name="terms_of_use_scan_med">Terms of Use - Scan Med</string>
+    <string name="article_1_object">Article 1 : Object</string>
+    <string name="these_t_amp_cs_or_general"><![CDATA[These T&Cs or General Conditions of Use legally govern the use of the services of the ScanMed mobile app (hereinafter referred to as “the app”). Constituting the contract between the company ScanMed and the User, access to the app must be preceded by acceptance of these T&Cs. Access to this platform signifies acceptance of these T&Cs.]]></string>
+    <string name="article_2_collection_of_data">Article 2 : Collection of data</string>
+    <string name="for_the_creation_of_the_user">For the creation of the User\'s account, the collection of information at the time of registration on the app is necessary and obligatory. In accordance with Law No. 78-17 of January 6 relating to information technology, files and freedoms, the collection and processing of personal information is carried out with respect for privacy.</string>
 </resources>
