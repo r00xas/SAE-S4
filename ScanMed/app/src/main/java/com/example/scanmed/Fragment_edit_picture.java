@@ -35,6 +35,7 @@ public class Fragment_edit_picture extends AppCompatActivity {
     private ImageView img7;
     private ImageView img8;
     private ImageView img9;
+    private ImageView imgBIG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +89,7 @@ public class Fragment_edit_picture extends AppCompatActivity {
     }
 
     private void config_img() {
+        imgBIG = findViewById(R.id.IV_avatar);
         img1 = findViewById(R.id.IMG_A1);
         img2 = findViewById(R.id.IMG_A2);
         img3 = findViewById(R.id.IMG_A3);
@@ -112,6 +114,7 @@ public class Fragment_edit_picture extends AppCompatActivity {
                     num_photo = 1;
                     reset_alpha_img();
                     img1.setImageAlpha(128);
+                    imgBIG.setImageResource(R.drawable.pp_2_1);
                     Log.e("Ouais", String.valueOf(num_photo));
                 }
             }
@@ -123,6 +126,7 @@ public class Fragment_edit_picture extends AppCompatActivity {
                     num_photo = 2;
                     reset_alpha_img();
                     img2.setImageAlpha(128);
+                    imgBIG.setImageResource(R.drawable.pp_2_2);
                     Log.e("Ouais", String.valueOf(num_photo));
                 }
             }
@@ -134,6 +138,7 @@ public class Fragment_edit_picture extends AppCompatActivity {
                     num_photo = 3;
                     reset_alpha_img();
                     img3.setImageAlpha(128);
+                    imgBIG.setImageResource(R.drawable.pp_2_3);
                     Log.e("Ouais", String.valueOf(num_photo));
                 }
             }
@@ -145,6 +150,7 @@ public class Fragment_edit_picture extends AppCompatActivity {
                     num_photo = 4;
                     reset_alpha_img();
                     img4.setImageAlpha(128);
+                    imgBIG.setImageResource(R.drawable.pp_3_1);
                     Log.e("Ouais", String.valueOf(num_photo));
                 }
             }
@@ -156,6 +162,7 @@ public class Fragment_edit_picture extends AppCompatActivity {
                     num_photo = 5;
                     reset_alpha_img();
                     img5.setImageAlpha(128);
+                    imgBIG.setImageResource(R.drawable.pp_3_2);
                     Log.e("Ouais", String.valueOf(num_photo));
                 }
             }
@@ -167,6 +174,7 @@ public class Fragment_edit_picture extends AppCompatActivity {
                     num_photo = 6;
                     reset_alpha_img();
                     img6.setImageAlpha(128);
+                    imgBIG.setImageResource(R.drawable.pp_3_3);
                     Log.e("Ouais", String.valueOf(num_photo));
                 }
             }
@@ -178,6 +186,7 @@ public class Fragment_edit_picture extends AppCompatActivity {
                     num_photo = 7;
                     reset_alpha_img();
                     img7.setImageAlpha(128);
+                    imgBIG.setImageResource(R.drawable.pp_4_1);
                     Log.e("Ouais", String.valueOf(num_photo));
                 }
             }
@@ -189,6 +198,7 @@ public class Fragment_edit_picture extends AppCompatActivity {
                     num_photo = 8;
                     reset_alpha_img();
                     img8.setImageAlpha(128);
+                    imgBIG.setImageResource(R.drawable.pp_4_2);
                     Log.e("Ouais", String.valueOf(num_photo));
                 }
             }
@@ -200,6 +210,7 @@ public class Fragment_edit_picture extends AppCompatActivity {
                     num_photo = 9;
                     reset_alpha_img();
                     img9.setImageAlpha(128);
+                    imgBIG.setImageResource(R.drawable.pp_4_3);
                     Log.e("Ouais", String.valueOf(num_photo));
                 }
             }

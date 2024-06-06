@@ -3,12 +3,13 @@ package com.example.scanmed;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,15 +22,27 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignInActivity extends AppCompatActivity {
     private static final int NB_CHARAC_PASSWORD = 8;
     private boolean isLanguageChanged = false;
+    private static final String EMAIL_PATTERN = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+    private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+
+    private EditText ETT_username;
+    private EditText ETT_mail;
+    private EditText ETT_password;
+    private CheckBox id_CheckBox1;
+    private CheckBox id_CheckBox2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +64,13 @@ public class SignInActivity extends AppCompatActivity {
         } else if (language.equals("fr")) {
             spinner.setSelection(1);
         }
+
+        ETT_username = findViewById(R.id.ETT_username);
+        ETT_mail = findViewById(R.id.ETT_mail);
+        ETT_password = findViewById(R.id.ETT_password);
+        id_CheckBox1 = findViewById(R.id.id_CheckBox1);
+        id_CheckBox2 = findViewById(R.id.id_CheckBox2);
+
 
         TextView TV_Login = findViewById(R.id.TV_login);
 
@@ -91,6 +111,7 @@ public class SignInActivity extends AppCompatActivity {
         button_singin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                reset_EditText_CheckBox();
                 if (Check_sign_In()){
                     send_to_back();
                     Intent intent = new Intent(SignInActivity.this, HomeMenuActivity.class);
@@ -106,6 +127,15 @@ public class SignInActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    private void reset_EditText_CheckBox() {
+        Drawable drawable = ContextCompat.getDrawable(this,R.drawable.rectangle_shape);
+        ETT_username.setBackground(drawable);
+        ETT_mail.setBackground(drawable);
+        ETT_password.setBackground(drawable);
+        id_CheckBox1.setButtonTintList(ColorStateList.valueOf(getResources().getColor(R.color.logo)));
+        id_CheckBox2.setButtonTintList(ColorStateList.valueOf(getResources().getColor(R.color.logo)));
     }
 
     private void send_to_back() {
@@ -146,61 +176,102 @@ public class SignInActivity extends AppCompatActivity {
         TV.setText(spannableString);
     }
 
-    private boolean Check_sign_In(){
-        EditText ETT_username = findViewById(R.id.ETT_username);
-        EditText ETT_mail = findViewById(R.id.ETT_mail);
-        EditText ETT_password = findViewById(R.id.ETT_password);
-        CheckBox id_CheckBox1 = findViewById(R.id.id_CheckBox1);
-        CheckBox id_CheckBox2 = findViewById(R.id.id_CheckBox2);
-        boolean everythinkCheck = true;
+    private boolean Check_sign_In() {
+        boolean everythingCheck = true;
 
-        /*if(!Check_username(ETT_username) || !Check_mail(ETT_mail) || !Check_password(ETT_password) || !Check_CheckBox(id_CheckBox1, id_CheckBox2)){
-            everythinkCheck = false;
-            Show_Error_SignIn();
-        }*/
-        return everythinkCheck;
+        if (!Check_username(ETT_username)) {
+            Show_Error_SignIn(4);
+            everythingCheck = false;
+        }
+        if (!Check_mail(ETT_mail)) {
+            Show_Error_SignIn(3);
+            everythingCheck = false;
+        }
+        if (!Check_password(ETT_password)) {
+            Show_Error_SignIn(2);
+            everythingCheck = false;
+        }
+        if (!id_CheckBox1.isChecked()) {
+            Show_Error_SignIn(1);
+            everythingCheck = false;
+        }
+        if (!id_CheckBox2.isChecked()) {
+            Show_Error_SignIn(0);
+            everythingCheck = false;
+        }
+
+        if(!everythingCheck)Toast.makeText(this, R.string.Error_SignIn, Toast.LENGTH_SHORT).show();
+
+
+        return everythingCheck;
     }
 
+
     private boolean Check_username(EditText ettUsername) {
-        return ettUsername.getText().toString().isEmpty();
+        return !ettUsername.getText().toString().isEmpty();
     }
 
     private boolean Check_mail(EditText ettMail) {
         String mail = ettMail.getText().toString();
-        if(mail.isEmpty() || !(mail.contains("@") && mail.contains(".")) && countOccurrences(mail,'@') == 1){
+
+        if(mail == null || mail.equals("")){
             return false;
         }
+        Matcher matcher = pattern.matcher(mail);
+        return matcher.matches();
+
+        /*
+        if(matcher.matches()){
+            //envoie API
+        }
+         */
+        /**
+         * connexion au back pour vérifier si pas déjà utilisé
+         */
 
 
-        //connexion au back pour vérifier si pas déjà utilisé
+    }
 
+    private boolean Check_password(EditText ettPassword) {
+        String password = ettPassword.getText().toString();
+        if(password == null || password.equals("")){
+            return false;
+        }
+        if(password.length() < NB_CHARAC_PASSWORD){
+            return false;
+        }
         return true;
     }
 
-    //ajouter des caractères à ne pas utiliser
-    private boolean Check_password(EditText ettPassword) {
-        String password = ettPassword.getText().toString();
-        return (!(password.isEmpty()) && (password.length() > NB_CHARAC_PASSWORD) && !((password.contains("<")) && (password.contains(">")) && (password.contains("+")) && (password.contains("*"))));
-    }
 
-    //Voir si il faut que les deux soient check ou pas
-    private boolean Check_CheckBox(CheckBox idCheckBox1, CheckBox idCheckBox2) {
-        return idCheckBox1.isChecked() && idCheckBox2.isChecked();
-    }
-
-    private void Show_Error_SignIn(){
-        Toast.makeText(this, R.string.Error_SignIn, Toast.LENGTH_SHORT).show();
-    }
-
-    public static int countOccurrences(String str, char ch) {
-        int count = 0;
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == ch) {
-                count++;
-            }
+    /**
+     * nb = 0 -> erreur de CheckBox, id_CheckBox2
+     * nb = 1 -> erreur de CheckBox, id_CheckBox1
+     * nb = 2 -> erreur de mot de passe, ETT_password
+     * nb = 3 -> erreur de mail, ETT_mail
+     * nb = 4 -> erreur de pseudo, ETT_username
+     * @param nb
+     */
+    private void Show_Error_SignIn(int nb){
+        Drawable drawable = ContextCompat.getDrawable(this,R.drawable.rectangle_shape_border_red);
+        switch (nb){
+            case 0 :
+                id_CheckBox2.setButtonTintList(ColorStateList.valueOf(getResources().getColor(R.color.red)));
+                break;
+            case 1 :
+                id_CheckBox1.setButtonTintList(ColorStateList.valueOf(getResources().getColor(R.color.red)));
+                break;
+            case 2 :
+                ETT_password.setBackground(drawable);
+                break;
+            case 3 :
+                ETT_mail.setBackground(drawable);
+                break;
+            case 4 :
+                ETT_username.setBackground(drawable);
+                break;
+            default:
+                return;
         }
-        return count;
     }
-
-
 }

@@ -29,6 +29,7 @@ import androidx.core.content.res.ResourcesCompat;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -309,12 +310,40 @@ public class HomeMenuActivity extends AppCompatActivity {
     }
 
     private void Set_Element_Ongoing(){
-        /**appel API qui donne les éléments*/
+        /*ApiRequest.getReports(new ReportsCallback() {
+            @Override
+            public void onSuccess(List<Report> reports) {
+                updateUIWithReports(reports);
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                e.printStackTrace();
+                // Handle the error appropriately
+            }
+        });*/
         LinearLayout linear_layout_spawn = findViewById(R.id.linear_layout_spawn);
         ArrayList<HashMap<String,String>> elements = pour_test();
         for (HashMap<String, String> element : elements) {
             RelativeLayout newRelative = Create_Element(element);
             linear_layout_spawn.addView(newRelative);
+        }
+    }
+
+    private void updateUIWithReports(List<Report> reports) {
+        LinearLayout linear_layout_spawn = findViewById(R.id.linear_layout_spawn);
+        for (Report report : reports) {
+            // Créer une nouvelle TextView pour chaque rapport
+            /*TextView reportView = new TextView(this);
+            reportView.setText("ID: " + report.id + "\n" +
+                    "Submission Date: " + report.submissionDate + "\n" +
+                    "Pharmacy ID: " + report.pharmacyId + "\n" +
+                    "State: " + report.currentState + "\n" +
+                    "CIP: " + report.cip);
+            reportView.setPadding(16, 16, 16, 16);
+
+            // Ajouter la TextView au LinearLayout
+            reportsLayout.addView(reportView);*/
         }
     }
 
