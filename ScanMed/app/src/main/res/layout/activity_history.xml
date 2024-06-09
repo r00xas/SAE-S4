@@ -157,10 +157,11 @@
             android:id="@+id/img_button_plus"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:src="@drawable/plus"
+            android:src="@drawable/rond_plus"
             android:scaleType="centerCrop"
             android:layout_centerInParent="true"
             android:layout_marginEnd="40dp"
+            android:padding="1dp"
             android:background="?attr/selectableItemBackground"
             android:contentDescription="Cross Button"
             app:layout_constraintDimensionRatio="1:1" />
