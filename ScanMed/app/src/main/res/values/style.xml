@@ -1,0 +1,5 @@
+<resources>
+    <style name="CustomSpinnerStyle" parent="Widget.AppCompat.Spinner.Underlined">
+        <item name="android:background">@drawable/custom_spinner_dropdown</item>
+    </style>
+</resources>
