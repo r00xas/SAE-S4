@@ -1,16 +1,21 @@
 package com.example.scanmed;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -24,6 +29,7 @@ import androidx.core.content.res.ResourcesCompat;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -37,6 +43,20 @@ public class HomeMenuActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
+        TextView TV_LogOut = findViewById(R.id.TV_LogOut);
+        Underline_Text(TV_LogOut);
+
+        TV_LogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeMenuActivity.this, HomepageFrag.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
         ImageButton button = findViewById(R.id.img_button_plus);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,8 +65,181 @@ public class HomeMenuActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Besoin de la page settings
+         */
+        RelativeLayout RL_Settings = findViewById(R.id.RL_Settings);
+        /*RL_Settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeMenuActivity.this, COMPLETER_ICI.class);
+                startActivity(intent);
+                finish();
+            }
+        });*/
+        ImageView IV_Settings = findViewById(R.id.IV_Settings);
+        RL_Settings.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IV_Settings.setImageAlpha(128);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IV_Settings.setImageAlpha(255);
+                        break;
+                }
+                return false;
+            }
+        });
+
+
+
+        RelativeLayout RL_Guide = findViewById(R.id.RL_Guide);
+        RL_Guide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeMenuActivity.this, GuideFragment.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        ImageView IV_Guide = findViewById(R.id.IV_Guide);
+        RL_Guide.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IV_Guide.setImageAlpha(128);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IV_Guide.setImageAlpha(255);
+                        break;
+                }
+                return false;
+            }
+        });
+
+        ImageView IV_circle = findViewById(R.id.IV_Help);
+        IV_circle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeMenuActivity.this, HelpCenterFragment.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        IV_circle.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IV_circle.setImageAlpha(128);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IV_circle.setImageAlpha(255);
+                        break;
+                }
+                return false;
+            }
+        });
+
+        ImageView IV_Home = findViewById(R.id.IV_Home);
+
+        LinearLayout LL_Home = findViewById(R.id.LL_Home);
+        LL_Home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeMenuActivity.this, HomeMenuActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        LL_Home.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IV_Home.setImageAlpha(128);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IV_Home.setImageAlpha(255);
+                        break;
+                }
+                return false;
+            }
+        });
+
+        ImageView IV_History = findViewById(R.id.IV_History);
+
+
+        LinearLayout LL_History = findViewById(R.id.LL_History);
+        LL_History.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeMenuActivity.this, HistoryActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        LL_History.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IV_History.setImageAlpha(128);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IV_History.setImageAlpha(255);
+                        break;
+                }
+                return false;
+            }
+        });
+
+        LinearLayout LL_LogOut = findViewById(R.id.LL_LogOut);
+        LL_LogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeMenuActivity.this, HomepageFrag.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        ImageView IV_LogOut = findViewById(R.id.IV_LogOut);
+        LL_LogOut.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IV_LogOut.setImageAlpha(128);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IV_LogOut.setImageAlpha(255);
+                        break;
+                }
+                return false;
+            }
+        });
+
         Set_Element_Ongoing();
 
+    }
+
+    private void Underline_Text(TextView TV){
+        String text = TV.getText().toString();
+        SpannableString spannableString = new SpannableString(text);
+        spannableString.setSpan(new UnderlineSpan(), 0, text.length(), 0);
+        TV.setText(spannableString);
     }
 
     public void loadLocale() {
@@ -83,7 +276,9 @@ public class HomeMenuActivity extends AppCompatActivity {
         popupView.findViewById(R.id.option1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle option 1 click
+                /*Intent intent = new Intent(HomeMenuActivity.this, COMPLETER_ICI.class);
+                startActivity(intent);
+                finish();*/
                 popupWindow.dismiss();
             }
         });
@@ -91,7 +286,9 @@ public class HomeMenuActivity extends AppCompatActivity {
         popupView.findViewById(R.id.option2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle option 2 click
+                /*Intent intent = new Intent(HomeMenuActivity.this, COMPLETER_ICI.class);
+                startActivity(intent);
+                finish();*/
                 popupWindow.dismiss();
             }
         });
@@ -99,7 +296,9 @@ public class HomeMenuActivity extends AppCompatActivity {
         popupView.findViewById(R.id.option3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle option 3 click
+                /*Intent intent = new Intent(HomeMenuActivity.this, COMPLETER_ICI.class);
+                startActivity(intent);
+                finish();*/
                 popupWindow.dismiss();
             }
         });
@@ -111,12 +310,40 @@ public class HomeMenuActivity extends AppCompatActivity {
     }
 
     private void Set_Element_Ongoing(){
-        /**appel API qui donne les éléments*/
+        /*ApiRequest.getReports(new ReportsCallback() {
+            @Override
+            public void onSuccess(List<Report> reports) {
+                updateUIWithReports(reports);
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                e.printStackTrace();
+                // Handle the error appropriately
+            }
+        });*/
         LinearLayout linear_layout_spawn = findViewById(R.id.linear_layout_spawn);
         ArrayList<HashMap<String,String>> elements = pour_test();
         for (HashMap<String, String> element : elements) {
             RelativeLayout newRelative = Create_Element(element);
             linear_layout_spawn.addView(newRelative);
+        }
+    }
+
+    private void updateUIWithReports(List<Report> reports) {
+        LinearLayout linear_layout_spawn = findViewById(R.id.linear_layout_spawn);
+        for (Report report : reports) {
+            // Créer une nouvelle TextView pour chaque rapport
+            /*TextView reportView = new TextView(this);
+            reportView.setText("ID: " + report.id + "\n" +
+                    "Submission Date: " + report.submissionDate + "\n" +
+                    "Pharmacy ID: " + report.pharmacyId + "\n" +
+                    "State: " + report.currentState + "\n" +
+                    "CIP: " + report.cip);
+            reportView.setPadding(16, 16, 16, 16);
+
+            // Ajouter la TextView au LinearLayout
+            reportsLayout.addView(reportView);*/
         }
     }
 

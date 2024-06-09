@@ -12,11 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ScanMed"
         tools:targetApi="31">
+
         <activity
             android:name=".HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.ScanMed" />
+
         <activity
             android:name=".LoadingActivity"
             android:exported="true">
@@ -33,6 +35,14 @@
         <activity android:name=".HomeMenuActivity"></activity>
 
         <activity android:name=".HistoryActivity"></activity>
+
+        <activity android:name=".GuideFragment"></activity>
+
+        <activity android:name=".HelpCenterFragment"></activity>
+
+        <activity android:name=".Fragment_edit_picture"></activity>
+
+        <activity android:name=".Terms_of_use"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

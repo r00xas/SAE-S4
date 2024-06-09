@@ -92,7 +92,7 @@ public class HomepageFrag extends Fragment {
             @Override
             public void onClick(View v) {
                 // Start SignInActivity
-                Intent intent = new Intent(getActivity(), HistoryActivity.class);
+                Intent intent = new Intent(getActivity(), SignInActivity.class);
                 startActivity(intent);
             }
         });

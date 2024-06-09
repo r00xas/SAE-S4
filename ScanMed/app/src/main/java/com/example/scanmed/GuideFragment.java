@@ -1,11 +1,15 @@
 package com.example.scanmed;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -24,6 +28,7 @@ public class GuideFragment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         loadLocale();
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_guide);
         EdgeToEdge.enable(this);
         TextView summarySection1 = findViewById(R.id.summary_section1);
         TextView summarySection2 = findViewById(R.id.summary_section2);
@@ -60,6 +65,32 @@ public class GuideFragment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 scrollToView(section4);
+            }
+        });
+
+        Button IMG_Back = findViewById(R.id.IMG_Back);
+        IMG_Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GuideFragment.this, HomeMenuActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        IMG_Back.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IMG_Back.setAlpha(0.5f);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IMG_Back.setAlpha(1f);
+                        break;
+                }
+                return false;
             }
         });
 

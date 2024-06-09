@@ -9,10 +9,12 @@
     <dimen name="but_layout_width">300dp</dimen>
     <dimen name="but_layout_height">60dp</dimen>
     <dimen name="text_normal_size">20dp</dimen>
+    <dimen name="text_normal_size_sp">16sp</dimen>
     <dimen name="text_small_size_plus">12sp</dimen>
     <dimen name="text_large_size">24sp</dimen>
     <dimen name="text_moins_big_size">23sp</dimen>
     <dimen name="text_big_size">30sp</dimen>
     <dimen name="Layout_elements_width">150dp</dimen>
     <dimen name="Layout_elements_height">90dp</dimen>
+    <dimen name="text_ultra_size">40sp</dimen>
 </resources>
