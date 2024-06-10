@@ -94,6 +94,7 @@ public class HomepageFrag extends Fragment {
                 // Start SignInActivity
                 Intent intent = new Intent(getActivity(), SignInActivity.class);
                 startActivity(intent);
+
             }
         });
 

@@ -53,6 +53,9 @@ android {
 dependencies {
 
     implementation(libs.appcompat)
+    implementation("com.journeyapps:zxing-android-embedded:4.1.0")
+    implementation("androidx.cardview:cardview:1.0.0")
+    implementation("com.google.zxing:core:3.3.3")
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
@@ -70,4 +73,6 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+
+
 }

@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +18,18 @@
         android:theme="@style/Theme.ScanMed"
         tools:targetApi="31">
 
+        <activity
+            android:name=".SignalementSendActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VerifMedicament"
+            android:exported="false" />
+        <activity
+            android:name=".SelectionPharmacieActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CIPCodeActivity"
+            android:exported="false" />
         <activity
             android:name=".HomeActivity"
             android:exported="false"
@@ -28,13 +45,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
-
-        <activity android:name=".SignInActivity"></activity>
-
-        <activity android:name=".HomeMenuActivity"></activity>
-
-        <activity android:name=".HistoryActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SignInActivity" />
+        <activity android:name=".HomeMenuActivity" />
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".QRCodeScannerActivity" />
 
         <activity android:name=".GuideFragment"></activity>
 
