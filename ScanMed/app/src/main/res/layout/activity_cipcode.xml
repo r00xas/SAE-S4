@@ -31,17 +31,25 @@
             android:clickable="true"
             android:paddingBottom="40dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Code CIP"
-            android:textAlignment="center"
-            android:textColor="#2E3135"
-            android:textSize="18sp"
-            tools:ignore="RtlCompat" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="50dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Code CIP"
+                    android:textAlignment="center"
+                    android:textColor="#2E3135"
+                    android:textSize="18sp"
+                    tools:ignore="RtlCompat" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -55,38 +63,70 @@
             android:layout_marginRight="20dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Sélectionnez une pharmacie"
-            android:textAlignment="textStart"
-            android:textColor="@color/blue_fonce"
+            android:textAlignment="center"
+            android:textColor="@color/blue_plus_fonce"
             android:textSize="23sp" />
 
         <Spinner
             android:id="@+id/spinner_pharmacy"
             style="@style/CustomSpinnerStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/spinner_background"
             android:gravity="center_vertical"
-            android:hint="Sélectionner une pharmacie"
+            android:hint="Sélectionner"
             android:padding="8dp"
             android:textColor="@android:color/white"
             android:textSize="16sp" />
 
-
-        <!-- CIP Code Input -->
-        <EditText
-            android:id="@+id/edittext_cip_code"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/spinner_pharmacy"
-            android:layout_marginTop="16dp"
-            android:drawableStart="@drawable/ic_code_cip_example"
-            android:drawablePadding="10dp"
-            android:hint="Saisisssez un code CIP"
-            android:inputType="number"
-            android:padding="10dp" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Saisissez un code CIP"
+            android:textAlignment="center"
+            android:textColor="@color/blue_plus_fonce"
+            android:textSize="23sp" />
+
+        <EditText
+            android:id="@+id/ETT_Code CIP"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/rectangle_shape"
+            android:elevation="@dimen/shadow_size"
+            android:hint="ex : 3400932320189"
+            android:ems="10"
+            android:fontFamily="@font/poppins_semibold"
+            android:inputType="text"
+            android:textSize="15dp"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="4"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+>
+        <ImageView
+            android:id="@+id/imageview_info_svg"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/info" />
 
         <!-- Information Text about CIP Code -->
         <TextView
@@ -94,33 +134,50 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edittext_cip_code"
-            android:layout_marginTop="8dp"
-            android:padding="10dp"
+            android:textStyle="italic"
+            android:fontFamily="@font/poppins"
             android:text="Le code CIP ou Présentation Identifier Code est un code numérique à 7 ou 13 chiffres qui permet d’identifier une présentation (ou un conditionnement) d’un médicament."
             android:textSize="14sp" />
 
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Où trouver le code CIP ?"
+            android:textAlignment="center"
+            android:textColor="@color/other_other_grey"
+            android:textSize="23sp" />
         <!-- Example Image of CIP Code -->
         <ImageView
             android:id="@+id/imageview_cip_example"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="141dp"
             android:layout_below="@+id/textview_cip_info"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:contentDescription="Où trouver le code CIP ?"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_cip_example_image" />
+            android:src="@drawable/code_cip_ex" />
 
-        <!-- Confirm CIP Code Button -->
         <Button
-            android:id="@+id/button_confirm_cip"
+            android:id="@+id/buttonAskReset"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imageview_cip_example"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="@color/teal_200"
+            android:layout_height="66dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/classic_button"
+            android:fontFamily="@font/poppins_medium"
             android:text="Confirmer le code CIP"
-            android:textColor="@android:color/white" />
-
+            android:textColor="@color/white"
+            />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

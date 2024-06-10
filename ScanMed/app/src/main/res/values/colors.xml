@@ -3,11 +3,13 @@
     <color name="black">#000000</color>
     <color name="grey">#5A6068</color>
     <color name="other_grey">#2E3135</color>
+    <color name="light_grey">#B8BCC5</color>
     <color name="other_other_grey">#5D646C</color>
     <color name="white">#FFFFFFFF</color>
     <color name="offwhite">#F8F9FD</color>
     <color name="blue_clair">#00BCD4</color>
     <color name="blue_fonce">#05515A</color>
+    <color name="blue_plus_fonce">#00343A</color>
     <color name="bleu_log">#005ECA</color>
     <color name="logo">#015D67</color>
     <color name="blue">#49C0D9</color>

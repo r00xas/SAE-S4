@@ -18,6 +18,15 @@
         android:theme="@style/Theme.ScanMed"
         tools:targetApi="31">
         <activity
+            android:name=".SignalementSendActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VerifMedicament"
+            android:exported="false" />
+        <activity
+            android:name=".SelectionPharmacieActivity"
+            android:exported="false" />
+        <activity
             android:name=".CIPCodeActivity"
             android:exported="false" />
         <activity
