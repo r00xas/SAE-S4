@@ -44,7 +44,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="50dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="Code CIP"
+                    android:text="@string/title_cipcode"
                     android:textAlignment="center"
                     android:textColor="#2E3135"
                     android:textSize="18sp"
@@ -69,7 +69,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginRight="20dp"
             android:fontFamily="@font/poppins_regular"
-            android:text="Confirmer le signalement"
+            android:text="@string/confirm_report"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="23sp" />
@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
                     android:padding="16dp"
-                    android:text="Nom de la pharmacie"
+                    android:text="@string/pharmacy_name"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
                     android:textSize="20sp" />
@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
                     android:padding="16dp"
-                    android:text="DOLIPRANE 1000 mg, comprimé effervescent sécable"
+                    android:text="@string/medication_name"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="14sp"
@@ -127,7 +127,7 @@
             android:layout_marginRight="20dp"
             android:background="@drawable/classic_button"
             android:fontFamily="@font/poppins_medium"
-            android:text="Envoyer le signalement"
+            android:text="@string/send_report"
             android:textColor="@color/white" />
 
         <Button
@@ -140,7 +140,7 @@
             android:layout_marginRight="20dp"
             android:background="@drawable/classic_button_light"
             android:fontFamily="@font/poppins_medium"
-            android:text="Annuler le signalement"
+            android:text="@string/cancel_report"
             android:textColor="@color/white" />
 
     </LinearLayout>

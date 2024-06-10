@@ -12,10 +12,22 @@
         android:src="@drawable/istockphoto_1472049014_1024x1024_13"
         android:scaleType="centerCrop"/>
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="109dp"
+        android:layout_height="25dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/custom_spinner_arrow"
+        android:gravity="right"
+        android:textColor="@color/logo" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="20dp"
+        android:paddingTop="70dp"
         android:orientation="vertical"
         tools:context=".HomeFragment">
 
@@ -25,34 +37,35 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="70dp"
+            android:layout_margin="80dp"
             android:src="@drawable/logo" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <Button
-            android:id="@+id/buttonLogin"
-            android:layout_width="match_parent"
-            android:layout_height="66dp"
-            android:layout_marginTop="60dp"
-            android:backgroundTint="#015D67"
-            android:elevation="20dp"
-            android:shadowDy="4"
-            android:text="Connexion"
-            app:cornerRadius="10dp" />
 
             <Button
-                android:id="@+id/buttonRegister"
+                android:id="@+id/buttonLogin"
                 android:layout_width="match_parent"
                 android:layout_height="66dp"
-                android:backgroundTint="#49BFD8"
-                android:shadowDy="4"
-                android:text="Inscription"
-                android:layout_marginTop="5dp"
-                android:elevation="20dp"
-                app:cornerRadius="10dp" />
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="70dp"
+                android:background="@drawable/classic_button"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/en_TV_login"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/buttonSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/classic_button_light"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/en_Signin"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 

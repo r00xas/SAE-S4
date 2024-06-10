@@ -1,10 +1,9 @@
 package com.example.scanmed;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,10 +49,8 @@ public class ResetPasswordFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Start a fragment transaction to replace LoginFragment with ResetPasswordFragment
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new LoginFragment())
-                        .addToBackStack(null) // Add transaction to back stack to enable back navigation
-                        .commit();
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
             }
         });
     }

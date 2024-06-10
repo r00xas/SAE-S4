@@ -1,16 +1,14 @@
 package com.example.scanmed;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.scanmed.databinding.FragmentCreatePasswordBinding;
 import com.example.scanmed.databinding.FragmentPasswordChangedBinding;
 
 /**
@@ -43,11 +41,8 @@ public class PasswordChangedFragment extends Fragment {
         binding.buttonBackHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start a fragment transaction to replace HomepageFrag with LoginFragment
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new HomepageFrag())
-                        .addToBackStack(null) // Add transaction to back stack to enable back navigation
-                        .commit();
+                Intent intent = new Intent(getActivity(), HomepageActivity.class);
+                startActivity(intent);
             }
         });
     }

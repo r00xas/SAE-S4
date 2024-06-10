@@ -18,6 +18,8 @@ public class QRCodeScannerActivity extends AppCompatActivity {
 
     private static final int PERMISSION_REQUEST_CAMERA = 1;
 
+    private String resultScan;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +63,12 @@ public class QRCodeScannerActivity extends AppCompatActivity {
             if (result.getContents() == null) {
                 Toast.makeText(this, "Scan cancelled", Toast.LENGTH_LONG).show();
             } else {
+                resultScan = result.getContents();
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, SelectionPharmacieActivity.class);
+                intent.putExtra("result", resultScan);
+                startActivity(intent);
+                finish();
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

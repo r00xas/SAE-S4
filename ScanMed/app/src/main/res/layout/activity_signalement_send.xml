@@ -43,7 +43,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="50dp"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Code CIP"
+                        android:text="@string/title_signalement"
                         android:textAlignment="center"
                         android:textColor="#2E3135"
                         android:textSize="18sp"
@@ -61,7 +61,7 @@
                 android:layout_marginTop="200dp"
                 android:layout_marginRight="20dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Votre signalement a été envoyé à l'administrateur ScanMed !"
+                android:text="@string/signalement_envoye"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20sp" />

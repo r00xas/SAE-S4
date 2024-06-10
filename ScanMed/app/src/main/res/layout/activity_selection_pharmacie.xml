@@ -43,7 +43,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="50dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="Code CIP"
+                    android:text="@string/title_cipcode"
                     android:textAlignment="center"
                     android:textColor="#2E3135"
                     android:textSize="18sp"
@@ -61,7 +61,7 @@
             android:layout_marginTop="70dp"
             android:layout_marginRight="20dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Sélectionnez une pharmacie"
+            android:text="@string/select_pharmacy"
             android:textAlignment="center"
             android:textColor="@color/blue_plus_fonce"
             android:textSize="23sp" />
@@ -76,7 +76,7 @@
             android:layout_marginRight="20dp"
             android:background="@drawable/spinner_background"
             android:gravity="center_vertical"
-            android:hint="Sélectionner"
+            android:hint="@string/select_hint"
             android:padding="8dp"
             android:textColor="@android:color/white"
             android:textSize="16sp" />
@@ -91,7 +91,7 @@
             android:layout_marginRight="20dp"
             android:background="@drawable/classic_button"
             android:fontFamily="@font/poppins_medium"
-            android:text="Confirmer la pharmacie"
+            android:text="@string/confirm_pharmacy"
             android:textColor="@color/white" />
     </LinearLayout>
 

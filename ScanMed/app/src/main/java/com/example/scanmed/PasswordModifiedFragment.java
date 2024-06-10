@@ -1,5 +1,6 @@
 package com.example.scanmed;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -45,8 +46,8 @@ public class PasswordModifiedFragment extends Fragment {
                 public void onClick(View v) {
                     FragmentManager fragment_manager = getParentFragmentManager();
                     FragmentTransaction fragment_transaction = fragment_manager.beginTransaction();
-                    HomepageFrag homepage_fragment = new HomepageFrag();
-                    fragment_transaction.replace(R.id.main, homepage_fragment);
+                    Intent intent = new Intent(getActivity(), HomepageActivity.class);
+                    startActivity(intent);
                     fragment_transaction.addToBackStack(null);
                     fragment_transaction.commit();
                 }
