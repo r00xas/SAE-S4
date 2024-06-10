@@ -77,7 +77,7 @@ public class SignInActivity extends AppCompatActivity {
         TV_Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignInActivity.this, HomepageFrag.class);
+                Intent intent = new Intent(SignInActivity.this, HomepageActivity.class);
                 startActivity(intent);
                 finish();
             }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Test_java_app</string>
+    <string name="app_name">ScanMed</string>
     <string name="en_TV_username">Username</string>
     <string name="en_TV_mail">Email</string>
     <string name="en_TV_password">Password</string>
@@ -105,5 +105,22 @@
     <string name="cip">CIP</string>
     <string name="scan">Scan</string>
     <string name="file">File</string>
+    <string name="title_cipcode">CIP Code</string>
+    <string name="select_pharmacy">Select a pharmacy</string>
+    <string name="select_hint">Select...</string>
+    <string name="enter_cip">Enter a CIP code</string>
+    <string name="details_cip">The CIP code or Presentation Identifier Code is a 7 or 13-digit numerical code which allows a presentation (or packaging) of a medicine to be identified.</string>
+    <string name="find_cip">Where to find a CIP code ?</string>
+    <string name="confirm_cip">Confirm the CIP code</string>
+    <string name="confirm_pharmacy">Confirm the pharmacy</string>
+    <string name="signalement_envoye">Your report has been sent to the ScanMed administrator!</string>
+    <string name="title_signalement">Report sent</string>
+    <string name="confirm_report">Confirm the report</string>
+    <string name="pharmacy_name">[Pharmacy name]</string>
+    <string name="medication_name">[Medication name]</string>
+    <string name="send_report">Send the report</string>
+    <string name="cancel_report">Cancel the report</string>
+    <string name="forgot_password">Forgot your password ?</string>
+    <string name="no_account">You don\'t have an account ?</string>
 
 </resources>

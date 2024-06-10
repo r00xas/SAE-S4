@@ -29,9 +29,9 @@ import androidx.core.content.res.ResourcesCompat;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 
+import javax.crypto.Cipher;
 
 
 public class HomeMenuActivity extends AppCompatActivity {
@@ -49,7 +49,7 @@ public class HomeMenuActivity extends AppCompatActivity {
         TV_LogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeMenuActivity.this, HomepageFrag.class);
+                Intent intent = new Intent(HomeMenuActivity.this, HomepageActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -209,7 +209,7 @@ public class HomeMenuActivity extends AppCompatActivity {
         LL_LogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeMenuActivity.this, HomepageFrag.class);
+                Intent intent = new Intent(HomeMenuActivity.this, HomepageActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -286,9 +286,8 @@ public class HomeMenuActivity extends AppCompatActivity {
         popupView.findViewById(R.id.option2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(HomeMenuActivity.this, COMPLETER_ICI.class);
+                Intent intent = new Intent(HomeMenuActivity.this, QRCodeScannerActivity.class);
                 startActivity(intent);
-                finish();*/
                 popupWindow.dismiss();
             }
         });
@@ -296,9 +295,8 @@ public class HomeMenuActivity extends AppCompatActivity {
         popupView.findViewById(R.id.option3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(HomeMenuActivity.this, COMPLETER_ICI.class);
+                Intent intent = new Intent(HomeMenuActivity.this, CIPCodeActivity.class);
                 startActivity(intent);
-                finish();*/
                 popupWindow.dismiss();
             }
         });
@@ -330,11 +328,11 @@ public class HomeMenuActivity extends AppCompatActivity {
         }
     }
 
-    private void updateUIWithReports(List<Report> reports) {
+    /*private void updateUIWithReports(List<Report> reports) {
         LinearLayout linear_layout_spawn = findViewById(R.id.linear_layout_spawn);
         for (Report report : reports) {
             // Créer une nouvelle TextView pour chaque rapport
-            /*TextView reportView = new TextView(this);
+            TextView reportView = new TextView(this);
             reportView.setText("ID: " + report.id + "\n" +
                     "Submission Date: " + report.submissionDate + "\n" +
                     "Pharmacy ID: " + report.pharmacyId + "\n" +
@@ -343,9 +341,9 @@ public class HomeMenuActivity extends AppCompatActivity {
             reportView.setPadding(16, 16, 16, 16);
 
             // Ajouter la TextView au LinearLayout
-            reportsLayout.addView(reportView);*/
+            reportsLayout.addView(reportView);
         }
-    }
+    }*/
 
     private ArrayList<HashMap<String, String>> pour_test() {
         ArrayList<HashMap<String, String>> elements = new ArrayList<>();

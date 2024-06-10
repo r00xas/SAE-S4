@@ -1,7 +1,9 @@
 package com.example.scanmed;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
@@ -18,17 +20,11 @@ public class CIPCodeActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_cipcode);
 
-        Spinner spinner = findViewById(R.id.spinner);
-        String[] options = {"English","Français"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_layout, options);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        Button button = findViewById(R.id.buttonConfirmCIP);
+        button.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SignalementSendActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 }
