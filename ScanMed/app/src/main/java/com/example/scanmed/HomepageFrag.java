@@ -91,7 +91,8 @@ public class HomepageFrag extends Fragment {
         btnInscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), QRCodeScannerActivity.class);
+                // Start SignInActivity
+                Intent intent = new Intent(getActivity(), SignInActivity.class);
                 startActivity(intent);
 
             }

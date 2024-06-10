@@ -12,55 +12,54 @@ import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Locale;
 
-public class HelpCenterFragment extends AppCompatActivity {
+public class Terms_of_use extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         loadLocale();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_help_center);
         EdgeToEdge.enable(this);
+        setContentView(R.layout.fragment_terms);
 
-        Button IMG_Back = findViewById(R.id.IMG_Back);
-        IMG_Back.setOnClickListener(new View.OnClickListener() {
+
+        Button button_BACK = findViewById(R.id.IMG_Back);
+
+        /*button_BACK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HelpCenterFragment.this, HomeMenuActivity.class);
+                Intent intent = new Intent(Terms_of_use.this, COMPLETER_ICI.class);
                 startActivity(intent);
-                finish();
-            }
-        });
+                finish();            }
+        });*/
 
-        IMG_Back.setOnTouchListener(new View.OnTouchListener() {
+        button_BACK.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        IMG_Back.setAlpha(0.5f);
+                        button_BACK.setAlpha(0.5f);
                         break;
                     case MotionEvent.ACTION_UP:
                     case MotionEvent.ACTION_CANCEL:
-                        IMG_Back.setAlpha(1f);
+                        button_BACK.setAlpha(1.0f);
                         break;
                 }
                 return false;
             }
         });
-
     }
+
+
 
 
     public void loadLocale() {
         SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = prefs.getString("My_Lang", "");
-        String test = "fr";
-        setLocal(this, test);
+        String language = "fr";
+        //prefs.getString("My_Lang", "");
+        setLocal(this, language);
     }
 
     public void setLocal(Activity activity, String langCode) {

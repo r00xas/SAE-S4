@@ -9,7 +9,7 @@
                 android:height="65dp" />
         </shape>
     </item>
-    <item android:drawable="@drawable/help_2"
+    <item android:drawable="@drawable/help"
         android:gravity="center"
         android:height="50dp"
         android:width="55dp"/>

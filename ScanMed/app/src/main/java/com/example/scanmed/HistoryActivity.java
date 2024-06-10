@@ -1,5 +1,6 @@
 package com.example.scanmed;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -8,8 +9,10 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -39,6 +42,116 @@ public class HistoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showPopupMenu(v);
+            }
+        });
+
+        ImageView IV_Settings = findViewById(R.id.IV_Settings);
+        /**
+         * Faut avoir la page settings
+         */
+        /*IV_Settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HistoryActivity.this, COMPLETER_ICI.class);
+                startActivity(intent);
+                finish();
+            }
+        });*/
+        IV_Settings.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IV_Settings.setImageAlpha(128);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IV_Settings.setImageAlpha(255);
+                        break;
+                }
+                return false;
+            }
+        });
+
+        ImageView IV_Help = findViewById(R.id.IV_Help);
+        IV_Help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HistoryActivity.this, HelpCenterFragment.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        IV_Help.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IV_Help.setImageAlpha(128);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IV_Help.setImageAlpha(255);
+                        break;
+                }
+                return false;
+            }
+        });
+
+        ImageView IV_Home = findViewById(R.id.IV_Home);
+
+        LinearLayout LL_Home = findViewById(R.id.LL_Home);
+        LL_Home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HistoryActivity.this, HomeMenuActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        LL_Home.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IV_Home.setImageAlpha(128);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IV_Home.setImageAlpha(255);
+                        break;
+                }
+                return false;
+            }
+        });
+
+        ImageView IV_History = findViewById(R.id.IV_History);
+
+        LinearLayout LL_History = findViewById(R.id.LL_History);
+        LL_History.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HistoryActivity.this, HistoryActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        LL_History.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        IV_History.setImageAlpha(128);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        IV_History.setImageAlpha(255);
+                        break;
+                }
+                return false;
             }
         });
 
