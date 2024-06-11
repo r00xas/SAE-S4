@@ -1,8 +1,9 @@
 package com.example.scanmed;
 
-import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -13,44 +14,49 @@ import android.view.ViewGroup;
 
 import com.example.scanmed.databinding.FragmentPasswordModifiedBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PasswordModifiedFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class PasswordModifiedFragment extends Fragment {
 
-        FragmentPasswordModifiedBinding binding;
-        public static com.example.scanmed.PasswordChangedFragment newInstance(String param1, String param2) {
-            com.example.scanmed.PasswordChangedFragment fragment = new com.example.scanmed.PasswordChangedFragment();
-            return fragment;
-        }
-
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            binding = FragmentPasswordModifiedBinding.inflate(inflater, container, false);
-            return binding.getRoot();
-        }
-
-        @Override
-        public void onViewCreated(View view, Bundle savedInstanceState){
-            super.onViewCreated(view, savedInstanceState);
-            binding.buttonBackHome.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    FragmentManager fragment_manager = getParentFragmentManager();
-                    FragmentTransaction fragment_transaction = fragment_manager.beginTransaction();
-                    Intent intent = new Intent(getActivity(), HomepageActivity.class);
-                    startActivity(intent);
-                    fragment_transaction.addToBackStack(null);
-                    fragment_transaction.commit();
-                }
-            });
-        }
+    private FragmentPasswordModifiedBinding binding;
+    public static PasswordModifiedFragment newInstance() {
+        return new PasswordModifiedFragment();
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        binding = FragmentPasswordModifiedBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        binding.imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                AccountSettingsModifyFragment account_settings = AccountSettingsModifyFragment.newInstance();
+                fragmentTransaction.replace(R.id.fragment_container, account_settings);
+                fragmentTransaction.commit();
+            }
+        });
+        binding.buttonBackHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                AccountSettingsModifyFragment account_settings = AccountSettingsModifyFragment.newInstance(); //page Home
+                fragmentTransaction.replace(R.id.fragment_container, account_settings);
+                fragmentTransaction.commit();
+            }
+        });
+    }
+}

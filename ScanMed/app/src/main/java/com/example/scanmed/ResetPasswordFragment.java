@@ -1,9 +1,12 @@
 package com.example.scanmed;
 
-import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +14,16 @@ import android.view.ViewGroup;
 
 import com.example.scanmed.databinding.FragmentResetPasswordBinding;
 
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link ResetPasswordFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class ResetPasswordFragment extends Fragment {
 
     FragmentResetPasswordBinding binding;
-
-    public static ResetPasswordFragment newInstance() {
-        ResetPasswordFragment fragment = new ResetPasswordFragment();
-        return fragment;
+    public static ResetPasswordFragment newInstance(String param1, String param2) {
+        return new ResetPasswordFragment();
     }
 
     @Override
@@ -32,25 +38,25 @@ public class ResetPasswordFragment extends Fragment {
         return binding.getRoot();
     }
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
-        super.onViewCreated(view, savedInstanceState);
-        binding.buttonReset.setOnClickListener(new View.OnClickListener() {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        binding.imageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                // Start a fragment transaction to replace LoginFragment with ResetPasswordFragment
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new CreatePasswordFragment())
-                        .addToBackStack(null) // Add transaction to back stack to enable back navigation
-                        .commit();
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                PasswordSettingsFragment password_settings = PasswordSettingsFragment.newInstance(); // go to home
+                fragmentTransaction.replace(R.id.fragment_container, password_settings);
+                fragmentTransaction.commit();
             }
         });
-
-        binding.buttonLogin.setOnClickListener(new View.OnClickListener() {
+        binding.buttonReset.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                // Start a fragment transaction to replace LoginFragment with ResetPasswordFragment
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                CreatePasswordFragment password_settings = CreatePasswordFragment.newInstance(); // go to home
+                fragmentTransaction.replace(R.id.fragment_container, password_settings);
+                fragmentTransaction.commit();
             }
         });
     }

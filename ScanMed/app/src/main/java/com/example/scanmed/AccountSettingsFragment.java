@@ -2,6 +2,8 @@ package com.example.scanmed;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,73 +20,85 @@ import com.example.scanmed.databinding.FragmentAccountSettingsBinding;
  * create an instance of this fragment.
  */
 public class AccountSettingsFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private FragmentAccountSettingsBinding binding;
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public AccountSettingsFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AccountSettingsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AccountSettingsFragment newInstance(String param1, String param2) {
-        AccountSettingsFragment fragment = new AccountSettingsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    FragmentAccountSettingsBinding binding;
+    public static AccountSettingsFragment newInstance() {
+        return new AccountSettingsFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding.backButton1.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                FragmentManager fragmentManager = getParentFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                AccountSettingsFragment accountFragment = AccountSettingsFragment.newInstance("account-seetingd", "account-settings");
-                fragmentTransaction.add(R.id.main, accountFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        });
-
-
 
         binding = FragmentAccountSettingsBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        binding.backButton1.setEnabled(false);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        binding.backButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                PasswordSettingsFragment password_settings = PasswordSettingsFragment.newInstance(); // go to home
+                fragmentTransaction.replace(R.id.fragment_container, password_settings);
+                fragmentTransaction.commit();
+            }
+        });
+        binding.imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                PasswordSettingsFragment password_settings = PasswordSettingsFragment.newInstance(); // go to edit profil picture
+                fragmentTransaction.replace(R.id.fragment_container, password_settings);
+                fragmentTransaction.commit();
+            }
+        });
+        binding.Settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                AccountSettingsModifyFragment account_settings_modify = AccountSettingsModifyFragment.newInstance();
+                fragmentTransaction.replace(R.id.fragment_container, account_settings_modify);
+                fragmentTransaction.commit();
+            }
+        });
+        binding.CGU.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                PasswordSettingsFragment password_settings = PasswordSettingsFragment.newInstance(); // go to CGU
+                fragmentTransaction.replace(R.id.fragment_container, password_settings);
+                fragmentTransaction.commit();
+            }
+        });
+        binding.HelpCenter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                PasswordSettingsFragment password_settings = PasswordSettingsFragment.newInstance(); // go to Help Center
+                fragmentTransaction.replace(R.id.fragment_container, password_settings);
+                fragmentTransaction.commit();
+            }
+        });
+        binding.buttonSavePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                PasswordSettingsFragment password_settings = PasswordSettingsFragment.newInstance(); // go to Help Center
+                fragmentTransaction.replace(R.id.fragment_container, password_settings);
+                fragmentTransaction.commit();
+            }
+        });
     }
-
 }

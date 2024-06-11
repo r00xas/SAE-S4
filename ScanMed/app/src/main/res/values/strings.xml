@@ -124,4 +124,16 @@
     <string name="forgot_password">Forgot your password ?</string>
     <string name="no_account">You don\'t have an account ?</string>
 
+    <string name="notif">Notifications</string>
+    <string name="notifPush">Notifications Push</string>
+    <string name="notifmail">Notifications par email</string>
+    <string name="info">Informations</string>
+    <string name="CGU">CGU</string>
+
+    <string name="settings">Réglages</string>
+    <string name="delete_account">Supprimer le compte</string>
+    <string name="language">Langue</string>
+    <string name="download">Téléchargez vos données</string>
+
+
 </resources>

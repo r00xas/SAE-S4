@@ -1,9 +1,12 @@
 package com.example.scanmed;
 
-import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +20,9 @@ import com.example.scanmed.databinding.FragmentPasswordChangedBinding;
  * create an instance of this fragment.
  */
 public class PasswordChangedFragment extends Fragment {
+
     FragmentPasswordChangedBinding binding;
-    public static PasswordChangedFragment newInstance(String param1, String param2) {
+    public static PasswordChangedFragment newInstance() {
         PasswordChangedFragment fragment = new PasswordChangedFragment();
         return fragment;
     }
@@ -34,15 +38,27 @@ public class PasswordChangedFragment extends Fragment {
         binding = FragmentPasswordChangedBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
-
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
-        super.onViewCreated(view, savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        binding.imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                PasswordSettingsFragment password_settings = PasswordSettingsFragment.newInstance(); // go to home
+                fragmentTransaction.replace(R.id.fragment_container, password_settings);
+                fragmentTransaction.commit();
+            }
+        });
         binding.buttonBackHome.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), HomepageActivity.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                PasswordSettingsFragment password_settings = PasswordSettingsFragment.newInstance(); // go to home
+                fragmentTransaction.replace(R.id.fragment_container, password_settings);
+                fragmentTransaction.commit();
             }
         });
     }
