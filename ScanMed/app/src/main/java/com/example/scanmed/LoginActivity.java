@@ -10,32 +10,38 @@ import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.Locale;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link LoginActivity#newInstance} factory method to
- * create an instance of this fragment.
- */
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class LoginActivity extends AppCompatActivity {
 
     private boolean isLanguageChanged = false;
-
+    OkHttpClient client;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         EdgeToEdge.enable(this);
@@ -102,9 +108,15 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, HomeMenuActivity.class);
-                startActivity(intent);
-                finish();
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("email", findViewById(R.id.editTextTextEmailAddress).toString());
+                    jsonObject.put("password", findViewById(R.id.editTextPassword).toString());
+                    jsonObject.put("device", "android5");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                loginUser(jsonObject);
             }
         });
     }
@@ -138,5 +150,63 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         String language = prefs.getString("My_Lang", "");
         setLocale(language);
+    }
+
+    private void loginUser(JSONObject userData) {
+        client = new OkHttpClient();
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), userData.toString());
+        Request request = new Request.Builder()
+                .url("http://192.168.1.13:8080/auth/login") // Remplacez par l'adresse IP de votre machine hôte
+                .post(requestBody)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+                Log.e("API", "Request failed: " + e.getMessage());
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                Log.v("API", "dans reponse");
+
+                String responseBody = response.body().string();
+                Log.d("API", "Response body: " + responseBody);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (response.isSuccessful()) {
+                            Log.i("API", responseBody);
+                            try {
+                                JSONObject responseJson = new JSONObject(responseBody);
+                                JSONObject data = responseJson.getJSONObject("data");
+                                String token = data.getString("token");
+
+                                SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("authToken", token);
+                                editor.putString("email", userData.getString("email"));
+                                editor.apply();
+                                Intent intent = new Intent(LoginActivity.this, HomeMenuActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Log.e("API", "Error response body: " + responseBody);
+                            EditText myEditText = findViewById(R.id.editTextTextEmailAddress);
+                            myEditText.setBackgroundResource(R.drawable.shape_typing_error);
+                            EditText myEditTextPass = findViewById(R.id.editTextPassword);
+                            myEditTextPass.setBackgroundResource(R.drawable.shape_typing_error);
+                        }
+                        response.close();
+                    }
+                });
+            }
+        });
     }
 }

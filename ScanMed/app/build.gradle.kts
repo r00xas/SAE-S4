@@ -51,7 +51,7 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.okhttp)
     implementation(libs.appcompat)
     implementation("com.journeyapps:zxing-android-embedded:4.1.0")
     implementation("androidx.cardview:cardview:1.0.0")
