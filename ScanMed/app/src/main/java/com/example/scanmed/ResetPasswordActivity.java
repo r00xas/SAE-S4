@@ -6,59 +6,59 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Locale;
 
-public class Terms_of_use extends AppCompatActivity {
+public class ResetPasswordActivity extends AppCompatActivity {
+
+    private ImageButton backButton;
+    private Button resetButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         loadLocale();
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.fragment_terms);
+        setContentView(R.layout.fragment_reset_password); // Assurez-vous que ce fichier existe
 
+        setupViews();
+        setupListeners();
+    }
 
-        Button button_BACK = findViewById(R.id.IMG_Back);
+    private void setupViews() {
+        backButton = findViewById(R.id.imageButton2);
+        resetButton = findViewById(R.id.buttonReset);
+    }
 
-        button_BACK.setOnClickListener(new View.OnClickListener() {
+    private void setupListeners() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Terms_of_use.this, AccountSettingsActivity.class);
-                startActivity(intent);
-                finish();            }
+            public void onClick(View view) {
+                navigateToActivity(ResetPasswordActivity.class);
+            }
         });
 
-        button_BACK.setOnTouchListener(new View.OnTouchListener() {
+        resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        button_BACK.setAlpha(0.5f);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                    case MotionEvent.ACTION_CANCEL:
-                        button_BACK.setAlpha(1.0f);
-                        break;
-                }
-                return false;
+            public void onClick(View view) {
+                navigateToActivity(CreatePasswordActivity.class);
             }
         });
     }
 
-
-
+    private void navigateToActivity(Class<?> activityClass) {
+        Intent intent = new Intent(ResetPasswordActivity.this, activityClass);
+        startActivity(intent);
+    }
 
     public void loadLocale() {
         SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = "fr";
-        //prefs.getString("My_Lang", "");
+        String language = prefs.getString("My_Lang", "");
         setLocal(this, language);
     }
 

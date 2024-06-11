@@ -91,7 +91,7 @@ public class SignInActivity extends AppCompatActivity {
         TV_Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignInActivity.this, HomepageActivity.class);
+                Intent intent = new Intent(SignInActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -323,7 +323,6 @@ public class SignInActivity extends AppCompatActivity {
         }
 
         if(!everythingCheck)Toast.makeText(this, R.string.Error_SignIn, Toast.LENGTH_SHORT).show();
-
 
         return everythingCheck;
     }

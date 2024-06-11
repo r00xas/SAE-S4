@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     OkHttpClient client;
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        loadLocale();
         EdgeToEdge.enable(this);
         setContentView(R.layout.fragment_login);
         super.onCreate(savedInstanceState);
@@ -86,12 +87,15 @@ public class LoginActivity extends AppCompatActivity {
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // OUVRIR FRAGMENT RESETPASSWORDACTIVITY
+                Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
 
         TextView goToSignIn = findViewById(R.id.buttonSignIn);
+        Underline_Text(goToSignIn);
         goToSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,7 +161,7 @@ public class LoginActivity extends AppCompatActivity {
         Log.i("API", userData.toString());
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), userData.toString());
         Request request = new Request.Builder()
-                .url("http://192.168.1.13:8080/auth/login") // Remplacez par l'adresse IP de votre machine hôte
+                .url("http://192.168.1.14:8080/auth/login") // Remplacez par l'adresse IP de votre machine hôte
                 .post(requestBody)
                 .build();
 

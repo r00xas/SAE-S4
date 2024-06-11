@@ -82,14 +82,14 @@ public class HomeMenuActivity extends AppCompatActivity {
          * Besoin de la page settings
          */
         RelativeLayout RL_Settings = findViewById(R.id.RL_Settings);
-        /*RL_Settings.setOnClickListener(new View.OnClickListener() {
+        RL_Settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeMenuActivity.this, COMPLETER_ICI.class);
+                Intent intent = new Intent(HomeMenuActivity.this, AccountSettingsActivity.class);
                 startActivity(intent);
                 finish();
             }
-        });*/
+        });
         ImageView IV_Settings = findViewById(R.id.IV_Settings);
         RL_Settings.setOnTouchListener(new View.OnTouchListener() {
             @Override

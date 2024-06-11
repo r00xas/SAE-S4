@@ -31,6 +31,8 @@
         <activity
             android:name=".CIPCodeActivity"
             android:exported="false" />
+        <activity android:name=".AccountSettingsActivity"
+            android:exported="false" />
         <activity
             android:name=".HomeActivity"
             android:exported="false"
@@ -54,13 +56,20 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".QRCodeScannerActivity" />
 
-        <activity android:name=".GuideFragment"></activity>
+        <activity android:name=".GuideFragment"/>
 
-        <activity android:name=".HelpCenterFragment"></activity>
+        <activity android:name=".HelpCenterFragment"/>
 
-        <activity android:name=".Fragment_edit_picture"></activity>
+        <activity android:name=".Fragment_edit_picture"/>
 
-        <activity android:name=".Terms_of_use"></activity>
+        <activity android:name=".Terms_of_use"/>
+
+        <activity android:name=".AccountSettingsModifyActivity"/>
+        <activity android:name=".CreatePasswordActivity"/>
+        <activity android:name=".PasswordChangedActivity"/>
+        <activity android:name=".PasswordModifiedActivity"/>
+        <activity android:name=".PasswordSettingsActivity"/>
+        <activity android:name=".ResetPasswordActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"

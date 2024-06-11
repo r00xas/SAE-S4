@@ -44,6 +44,7 @@ public class HomepageActivity extends AppCompatActivity {
 
     // TODO: Rename and change types and number of parameters
     public void onCreate(Bundle savedInstanceState) {
+        loadLocale();
         EdgeToEdge.enable(this);
         setContentView(R.layout.fragment_homepage);
         super.onCreate(savedInstanceState);

@@ -137,4 +137,5 @@
     <string name="download">Téléchargez vos données</string>
 
     <string name="title_activity_home">Acceuil</string>
+    <string name="page_login">Connexion</string>
 </resources>

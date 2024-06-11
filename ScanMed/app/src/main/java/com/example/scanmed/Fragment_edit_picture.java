@@ -62,13 +62,13 @@ public class Fragment_edit_picture extends AppCompatActivity {
 
         Button button_BACK = findViewById(R.id.IMG_Back);
 
-        /*button_BACK.setOnClickListener(new View.OnClickListener() {
+        button_BACK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Fragment_edit_picture.this, COMPLETER_ICI.class);
+                Intent intent = new Intent(Fragment_edit_picture.this, AccountSettingsActivity.class);
                 startActivity(intent);
                 finish();            }
-        });*/
+        });
 
         button_BACK.setOnTouchListener(new View.OnTouchListener() {
             @Override

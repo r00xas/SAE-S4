@@ -135,6 +135,7 @@
     <string name="delete_account">Delete Account</string>
     <string name="language">Language</string>
     <string name="download">Download Your Data</string>
+    <string name="page_login">Log in</string>
 
 
 </resources>

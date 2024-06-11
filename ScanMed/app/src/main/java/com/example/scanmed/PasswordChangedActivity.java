@@ -6,32 +6,41 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.view.View;
 import android.widget.Button;
-import android.widget.Spinner;
+import android.widget.ImageButton;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Locale;
 
-public class CIPCodeActivity extends AppCompatActivity {
+public class PasswordChangedActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         loadLocale();
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_cipcode);
+        setContentView(R.layout.fragment_password_changed);
 
-        Button button = findViewById(R.id.buttonConfirmCIP);
-        button.setOnClickListener(v -> {
-            Intent intent = new Intent(this, SignalementSendActivity.class);
-            startActivity(intent);
-            finish();
+        ImageButton imageButton = findViewById(R.id.imageButton);
+        Button buttonBackHome = findViewById(R.id.buttonBackHome);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigue vers PasswordSettingsActivity
+                Intent intent = new Intent(PasswordChangedActivity.this, PasswordSettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonBackHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigue vers PasswordSettingsActivity
+                Intent intent = new Intent(PasswordChangedActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
         });
     }
 

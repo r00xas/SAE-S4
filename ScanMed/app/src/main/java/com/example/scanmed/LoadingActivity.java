@@ -17,10 +17,10 @@ public class LoadingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        loadLocale();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading); // Assuming you have a layout file for LoadingActivity
 
-        loadLocale();
 
         // Set a delay of 3000ms (3 seconds)
         new Handler().postDelayed(new Runnable() {
