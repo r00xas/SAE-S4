@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/rectangle_fond"
-    tools:context=".MainActivity">
+    tools:context=".HomeMenuActivity">
 
 
 
@@ -110,7 +110,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/poppins_medium"
-                android:paddingEnd="13dp"
+                android:paddingEnd="16dp"
                 android:textColor="@color/black"
                 android:text="@string/TV_setting"
                 android:textSize="@dimen/text_normal_size_sp" />
@@ -136,7 +136,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/poppins_medium"
-                android:paddingEnd="25dp"
+                android:paddingEnd="30dp"
                 android:textColor="@color/black"
                 android:text="@string/TV_help"
                 android:textSize="@dimen/text_normal_size_sp" />
