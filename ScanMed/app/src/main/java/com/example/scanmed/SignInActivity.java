@@ -317,10 +317,10 @@ public class SignInActivity extends AppCompatActivity {
             Show_Error_SignIn(1);
             everythingCheck = false;
         }
-        if (!id_CheckBox2.isChecked()) {
+        /*if (!id_CheckBox2.isChecked()) {
             Show_Error_SignIn(0);
             everythingCheck = false;
-        }
+        }*/
 
         if(!everythingCheck)Toast.makeText(this, R.string.Error_SignIn, Toast.LENGTH_SHORT).show();
 

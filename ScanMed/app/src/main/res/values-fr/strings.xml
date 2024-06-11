@@ -131,6 +131,7 @@
     <string name="info">Informations</string>
     <string name="CGU">CGU</string>
 
+    <string name="report_history">Historique des signalements</string>
     <string name="settings">Réglages</string>
     <string name="delete_account">Supprimer le compte</string>
     <string name="language">Langue</string>
@@ -138,4 +139,6 @@
 
     <string name="title_activity_home">Acceuil</string>
     <string name="page_login">Connexion</string>
+
+    <string name="token">Entrez le code reçu par mail</string>
 </resources>

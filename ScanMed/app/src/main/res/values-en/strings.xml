@@ -137,5 +137,8 @@
     <string name="download">Download Your Data</string>
     <string name="page_login">Log in</string>
 
+    <string name="token">Enter the code received by email</string>
+
+    <string name="report_history">Report history</string>
 
 </resources>

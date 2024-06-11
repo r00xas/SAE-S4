@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                     EditText myEditTextPassword = findViewById(R.id.editTextPassword);
                     jsonObject.put("email", myEditTextMail.getText().toString());
                     jsonObject.put("password", myEditTextPassword.getText().toString());
-                    jsonObject.put("device", "android8");
+                    jsonObject.put("device", android.os.Build.MODEL);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -161,7 +161,7 @@ public class LoginActivity extends AppCompatActivity {
         Log.i("API", userData.toString());
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), userData.toString());
         Request request = new Request.Builder()
-                .url("http://192.168.1.14:8080/auth/login") // Remplacez par l'adresse IP de votre machine hôte
+                .url("http://192.168.1.13:8080/auth/login") // Remplacez par l'adresse IP de votre machine hôte
                 .post(requestBody)
                 .build();
 

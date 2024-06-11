@@ -8,16 +8,30 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.Locale;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class AccountSettingsModifyActivity extends AppCompatActivity {
 
@@ -35,12 +49,6 @@ public class AccountSettingsModifyActivity extends AppCompatActivity {
         setupViews();
         setupListeners();
 
-        SharedPreferences sharedPref = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("username", "toto");
-        editor.putString("password", "Ab=1aaaa");
-        editor.putString("mail", "e.launay512@gmail.com");
-        editor.apply();
     }
 
     private void setupViews() {
@@ -49,10 +57,10 @@ public class AccountSettingsModifyActivity extends AppCompatActivity {
         editPasswordText = findViewById(R.id.editPasswordText);
         editMailLayout = findViewById(R.id.editMailLayout);
 
-        SharedPreferences sharedPref = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
 
         editUserText.setText(sharedPref.getString("username", "none"));
-        editMailText.setText(sharedPref.getString("mail", "none"));
+        editMailText.setText(sharedPref.getString("email", "none"));
         editPasswordText.setText("tototototototo");
     }
 
@@ -80,23 +88,12 @@ public class AccountSettingsModifyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (editMailText.getText().toString().contains("@"))
-                    save();
+                    editUser();
                 else {
                     editMailLayout.setBackground(getResources().getDrawable(R.drawable.input_text_style_error));
                 }
             }
         });
-    }
-
-    @SuppressLint("UseCompatLoadingForDrawables")
-    private void save() {
-        SharedPreferences sharedPref = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("username", editUserText.getText().toString());
-        editor.putString("password", editPasswordText.getText().toString());
-        editor.putString("mail", editMailText.getText().toString());
-        editor.apply();
-        editMailLayout.setBackground(getResources().getDrawable(R.drawable.input_text_style));
     }
 
     private void navigateToActivity(Class<?> activityClass) {
@@ -121,5 +118,71 @@ public class AccountSettingsModifyActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = activity.getSharedPreferences("Settings", MODE_PRIVATE).edit();
         editor.putString("My_Lang", langCode);
         editor.apply();
+    }
+
+    private void editUser() {
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("authToken", null);
+        String email = sharedPreferences.getString("email", null);
+
+        if (token == null || email == null) {
+            Log.e("API", "Token or email not found in SharedPreferences");
+            return;
+        }
+
+        OkHttpClient client = new OkHttpClient();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("username", sharedPreferences.getString("username", null));
+            jsonObject.put("email", sharedPreferences.getString("email", null));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e("API", "JSON Exception: " + e.getMessage());
+            return;
+        }
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonObject.toString());
+
+        Request request = new Request.Builder()
+                .url("http://192.168.1.13:8080/user/edit")
+                .patch(requestBody)
+                .addHeader("X-Email", email)
+                .addHeader("X-Token", token)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+                Log.e("API", "Request failed: " + e.getMessage());
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                Log.v("API", "dans reponse");
+
+                String responseBody = response.body().string();
+                Log.d("API", "Response body: " + responseBody);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (response.isSuccessful()) {
+                            Log.i("API", "User modified successfully: " + responseBody);
+                            SharedPreferences sharedPref = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString("username", editUserText.getText().toString());
+                            editor.putString("mail", editMailText.getText().toString());
+                            editor.apply();
+                            navigateToActivity(AccountSettingsActivity.class);
+                        } else {
+                            Log.e("API", "Error response body: " + responseBody);
+                        }
+                    }
+                });
+                response.close();
+            }
+        });
     }
 }

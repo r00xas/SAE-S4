@@ -135,6 +135,8 @@
     <string name="language">Langue</string>
     <string name="download">Téléchargez vos données</string>
     <string name="page_login">Log in</string>
+    <string name="report_history">Historique des signalements</string>
+    <string name="token">Entrez le code reçu par mail</string>
 
 
 </resources>

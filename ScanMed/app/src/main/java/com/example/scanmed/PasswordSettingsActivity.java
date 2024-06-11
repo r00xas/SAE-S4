@@ -2,12 +2,14 @@ package com.example.scanmed;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,29 +17,41 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.Locale;
 import java.util.regex.Pattern;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class PasswordSettingsActivity extends AppCompatActivity {
 
     private EditText textPassword1;
     private EditText textPassword2;
     private EditText textPassword3;
-    private LinearLayout layoutPassword1;
-    private LinearLayout layoutPassword2;
-    private LinearLayout layoutPassword3;
     private ImageButton seePassword1;
     private ImageButton seePassword2;
     private ImageButton seePassword3;
-    private Button buttonResetPassword;
+    private Button buttonAskReset;
+    private LinearLayout layout3;
+    private LinearLayout layout2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         loadLocale();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_password_settings); // Assurez-vous que ce fichier existe
+        setContentView(R.layout.fragment_create_password); // Assurez-vous que ce fichier existe
 
         setupViews();
         setupListeners();
@@ -47,71 +61,62 @@ public class PasswordSettingsActivity extends AppCompatActivity {
         textPassword1 = findViewById(R.id.TextPassword1);
         textPassword2 = findViewById(R.id.TextPassword2);
         textPassword3 = findViewById(R.id.TextPassword3);
-        layoutPassword1 = findViewById(R.id.LayoutPassword1);
-        layoutPassword2 = findViewById(R.id.LayoutPassword2);
-        layoutPassword3 = findViewById(R.id.LayoutPassword3);
         seePassword1 = findViewById(R.id.seePassword1);
         seePassword2 = findViewById(R.id.seePassword2);
         seePassword3 = findViewById(R.id.seePassword3);
-        buttonResetPassword = findViewById(R.id.buttonResetPassword);
+        layout2 = findViewById(R.id.LayoutPassword2);
+        layout3 = findViewById(R.id.LayoutPassword3);
+        buttonAskReset = findViewById(R.id.buttonAskReset);
     }
 
     private void setupListeners() {
-        ImageButton backButton = findViewById(R.id.imageButton3);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigateToActivity(AccountSettingsModifyActivity.class);
-            }
-        });
-
         seePassword1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                togglePasswordVisibility(textPassword1, seePassword1);
+                togglePasswordVisibility(textPassword1);
             }
         });
 
         seePassword2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                togglePasswordVisibility(textPassword2, seePassword2);
+                togglePasswordVisibility(textPassword2);
             }
         });
 
         seePassword3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                togglePasswordVisibility(textPassword3, seePassword3);
+                togglePasswordVisibility(textPassword3);
             }
         });
 
-        buttonResetPassword.setOnClickListener(new View.OnClickListener() {
+        buttonAskReset.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onClick(View view) {
-                String currentPwd = textPassword1.getText().toString();
                 String newPwd = textPassword2.getText().toString();
-                String confirmationPwd = textPassword3.getText().toString();
-                if (!checkGoodPassword(currentPwd)) {
-                    layoutPassword1.setBackground(getResources().getDrawable(R.drawable.input_text_style_error));
-                } else if (!passwordRulesCheck(newPwd)) {
-                    layoutPassword2.setBackground(getResources().getDrawable(R.drawable.input_text_style_error));
-                } else if (!newPwd.equals(confirmationPwd)) {
-                    layoutPassword3.setBackground(getResources().getDrawable(R.drawable.input_text_style_error));
+                String confirmationpwd = textPassword3.getText().toString();
+                if (!passwordRulesCheck(newPwd)) {
+                    layout2.setBackground(getResources().getDrawable(R.drawable.input_text_style_error));
+                } else if (!newPwd.equals(confirmationpwd)){
+                    layout3.setBackground(getResources().getDrawable(R.drawable.input_text_style_error));
                 } else {
-                    // Action à réaliser si tout est correct
+                    JSONObject jsonObject = new JSONObject();
+                    SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+                    try {
+                        EditText EditTextToken = findViewById(R.id.TextPassword1);
+                        EditText EditTextPassword = findViewById(R.id.TextPassword2);
+                        jsonObject.put("email", sharedPreferences.getString("email", null));
+                        jsonObject.put("token", EditTextToken.getText().toString());
+                        jsonObject.put("newPassword", EditTextPassword.getText().toString());
+                        passwordReset(jsonObject);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
-    }
-
-    private boolean checkGoodPassword(String pwd) {
-        SharedPreferences sharedPref = getSharedPreferences("my_preferences", MODE_PRIVATE);
-        Log.i("API", sharedPref.getString("password", "none"));
-        Log.i("API", pwd);
-        Log.i("API", "Même mot de passe: " + pwd.equals(sharedPref.getString("password", "none")));
-        return pwd.equals(sharedPref.getString("password", "none"));
     }
 
     private boolean passwordRulesCheck(String pwd) {
@@ -120,14 +125,12 @@ public class PasswordSettingsActivity extends AppCompatActivity {
         return pattern.matcher(pwd).matches();
     }
 
-    private void togglePasswordVisibility(EditText editText, ImageButton imageButton) {
+    private void togglePasswordVisibility(EditText editText) {
         int inputType = editText.getInputType();
         if (inputType == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
             inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD;
-            imageButton.setImageResource(R.drawable.eye);
         } else {
             inputType = InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD;
-            imageButton.setImageResource(R.drawable.close_eyes);
         }
         editText.setInputType(inputType);
         editText.setSelection(editText.getText().length());
@@ -155,5 +158,46 @@ public class PasswordSettingsActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = activity.getSharedPreferences("Settings", MODE_PRIVATE).edit();
         editor.putString("My_Lang", langCode);
         editor.apply();
+    }
+
+    private void passwordReset(JSONObject jsonObject)  {
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonObject.toString());
+        Request request = new Request.Builder()
+                .url("http://192.168.1.13:8080/auth/password_reset")
+                .post(requestBody)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+                Log.e("API", "Request failed: " + e.getMessage());
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                Log.v("API", "dans reponse");
+
+                String responseBody = response.body().string();
+                Log.d("API", "Response body: " + responseBody);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (response.isSuccessful()) {
+                            Log.i("API", responseBody);
+                            navigateToActivity(PasswordChangedActivity.class);
+                        } else {
+                            Log.e("API", "Error response body: " + responseBody);
+                        }
+                    }
+                });
+                response.close();
+
+            }
+
+        });
     }
 }

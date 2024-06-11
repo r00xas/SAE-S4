@@ -42,8 +42,10 @@ import javax.crypto.Cipher;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
@@ -222,6 +224,7 @@ public class HomeMenuActivity extends AppCompatActivity {
         LL_LogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                revokeToken();
                 Intent intent = new Intent(HomeMenuActivity.this, HomepageActivity.class);
                 startActivity(intent);
                 finish();
@@ -719,6 +722,10 @@ public class HomeMenuActivity extends AppCompatActivity {
 
                                 TextView myTextView = findViewById(R.id.TV_User);
                                 myTextView.setText(username);
+                                SharedPreferences sharedPref = getSharedPreferences("my_preferences", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPref.edit();
+                                editor.putString("username", username);
+                                editor.apply();
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -733,4 +740,60 @@ public class HomeMenuActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void revokeToken() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("authToken", null);
+        String email = sharedPreferences.getString("email", null);
+
+        if (token == null || email == null) {
+            Log.e("API", "Token or email not found in SharedPreferences");
+            return;
+        }
+        OkHttpClient client = new OkHttpClient();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("device", android.os.Build.MODEL);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonObject.toString());
+        Request request = new Request.Builder()
+                .url("http://192.168.1.13:8080/user/revoke")
+                .delete(requestBody)
+                .addHeader("X-Email", email)
+                .addHeader("X-Token", token)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+                Log.e("API", "Request failed: " + e.getMessage());
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                Log.v("API", "dans reponse");
+
+                String responseBody = response.body().string();
+                Log.d("API", "Response body: " + responseBody);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (response.isSuccessful()) {
+                            Log.i("API", responseBody);
+                        } else {
+                            Log.e("API", "Error response body: " + responseBody);
+                        }
+                    }
+                });
+                response.close();
+            }
+        });
+    }
+
+
 }

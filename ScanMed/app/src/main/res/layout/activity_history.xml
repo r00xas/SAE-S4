@@ -99,10 +99,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="Report history"
+                    android:text="@string/report_history"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_big_size"
+                    android:textSize="@dimen/text_moins_big_size"
                     app:layout_constraintTop_toBottomOf="@id/RL_top" />
 
 
