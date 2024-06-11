@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,22 +22,35 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class SignInActivity extends AppCompatActivity {
     private static final int NB_CHARAC_PASSWORD = 8;
     private boolean isLanguageChanged = false;
     private static final String EMAIL_PATTERN = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
     private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-
+    public OkHttpClient client;
     private EditText ETT_username;
     private EditText ETT_mail;
     private EditText ETT_password;
@@ -113,10 +127,20 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 reset_EditText_CheckBox();
                 if (Check_sign_In()){
-                    send_to_back();
-                    Intent intent = new Intent(SignInActivity.this, HomeMenuActivity.class);
-                    startActivity(intent);
-                    finish();
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        EditText myEditTextUser = findViewById(R.id.ETT_username);
+                        EditText myEditTextMail = findViewById(R.id.ETT_mail);
+                        EditText myEditTextPassword = findViewById(R.id.ETT_password);
+                        jsonObject.put("username", myEditTextUser.getText().toString());
+                        jsonObject.put("email", myEditTextMail.getText().toString());
+                        jsonObject.put("password", myEditTextPassword.getText().toString());
+                        CheckBox myCheckBox = findViewById(R.id.id_CheckBox2);
+                        jsonObject.put("acceptsEmails", myCheckBox.isChecked());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    createUser(jsonObject);
                 }
             }
         });
@@ -138,11 +162,109 @@ public class SignInActivity extends AppCompatActivity {
         id_CheckBox2.setButtonTintList(ColorStateList.valueOf(getResources().getColor(R.color.logo)));
     }
 
-    private void send_to_back() {
-        /**
-         * fonction qui envoie au back les infos pour créer un nouveau compte
-         */
+    private void createUser(JSONObject userData) {
+        client = new OkHttpClient();
+        Log.i("API", userData.toString());
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), userData.toString());
+        Request request = new Request.Builder()
+                .url("http://192.168.1.13:8080/auth/register") // Remplacez par l'adresse IP de votre machine hôte
+                .post(requestBody)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+                Log.e("API", "Request failed: " + e.getMessage());
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                Log.v("API", "dans reponse");
+
+                String responseBody = response.body().string();
+                Log.d("API", "Response body: " + responseBody);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (response.isSuccessful()) {
+                            Log.i("API", responseBody);
+                            JSONObject jsonObject = new JSONObject();
+                            try {
+                                EditText myEditTextMail = findViewById(R.id.ETT_mail);
+                                EditText myEditTextPassword = findViewById(R.id.ETT_password);
+                                jsonObject.put("email", myEditTextMail.getText().toString());
+                                jsonObject.put("password", myEditTextPassword.getText().toString());
+                                jsonObject.put("device", "android5");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            loginUser(jsonObject);
+                        } else {
+                            Log.e("API", "Error response body: " + responseBody);
+                        }
+                    }
+                });
+                response.close();
+            }
+        });
     }
+
+    private void loginUser(JSONObject userData) {
+        client = new OkHttpClient();
+        Log.i("API", userData.toString());
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), userData.toString());
+        Request request = new Request.Builder()
+                .url("http://192.168.1.13:8080/auth/login") // Remplacez par l'adresse IP de votre machine hôte
+                .post(requestBody)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+                Log.e("API", "Request failed: " + e.getMessage());
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                Log.v("API", "dans reponse");
+
+                String responseBody = response.body().string();
+                Log.d("API", "Response body: " + responseBody);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (response.isSuccessful()) {
+                            Log.i("API", responseBody);
+                            try {
+                                JSONObject responseJson = new JSONObject(responseBody);
+                                JSONObject data = responseJson.getJSONObject("data");
+                                String token = data.getString("token");
+
+                                SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("authToken", token);
+                                editor.putString("email", userData.getString("email"));
+                                editor.apply();
+                                Intent intent = new Intent(SignInActivity.this, HomeMenuActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Log.e("API", "Error response body: " + responseBody);
+                        }
+                        response.close();
+                    }
+                });
+            }
+        });
+    }
+
 
     private void restartActivity() {
         finish();

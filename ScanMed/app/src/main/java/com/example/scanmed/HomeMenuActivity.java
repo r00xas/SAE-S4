@@ -1,6 +1,7 @@
 package com.example.scanmed;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -9,6 +10,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -22,16 +24,27 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 
 import javax.crypto.Cipher;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 public class HomeMenuActivity extends AppCompatActivity {
@@ -45,7 +58,7 @@ public class HomeMenuActivity extends AppCompatActivity {
 
         TextView TV_LogOut = findViewById(R.id.TV_LogOut);
         Underline_Text(TV_LogOut);
-
+        getUserInfo();
         TV_LogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -650,5 +663,74 @@ public class HomeMenuActivity extends AppCompatActivity {
         return relativeLayout;
     }
 
+    private void getUserInfo() {
 
+        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("authToken", null);
+        String email = sharedPreferences.getString("email", null);
+
+        if (token == null || email == null) {
+            Log.e("API", "Token or email not found in SharedPreferences");
+            return;
+        }
+
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url("http://192.168.1.13:8080/user/infos")
+                .get()
+                .addHeader("X-Email", email)
+                .addHeader("X-Token", token)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+                Log.e("API", "Request failed: " + e.getMessage());
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                Log.v("API", "dans reponse");
+
+                String responseBody = response.body().string();
+                Log.d("API", "Response body: " + responseBody);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (response.isSuccessful()) {
+                            Log.i("API", responseBody);
+                            try {
+                                JSONObject responseJson = new JSONObject(responseBody);
+                                JSONObject data = responseJson.getJSONObject("data");
+
+                                String username = data.getString("username");
+                                String email = data.getString("email");
+                                boolean acceptsEmails = data.getBoolean("acceptsEmails");
+                                int avatarId = data.getInt("avatarId");
+
+                                // Utilisez les informations utilisateur ici
+                                Log.i("API", "Username: " + username);
+                                Log.i("API", "Email: " + email);
+                                Log.i("API", "Accepts Emails: " + acceptsEmails);
+                                Log.i("API", "Avatar ID: " + avatarId);
+
+                                TextView myTextView = findViewById(R.id.TV_User);
+                                myTextView.setText(username);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Log.e("API", "Error response body: " + responseBody);
+                        }
+                    }
+                });
+
+                response.close();
+            }
+        });
+    }
 }

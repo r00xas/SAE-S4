@@ -1,7 +1,5 @@
 package com.example.scanmed;
 
-import static android.app.PendingIntent.getActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -110,9 +108,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put("email", findViewById(R.id.editTextTextEmailAddress).toString());
-                    jsonObject.put("password", findViewById(R.id.editTextPassword).toString());
-                    jsonObject.put("device", "android5");
+                    EditText myEditTextMail = findViewById(R.id.editTextTextEmailAddress);
+                    EditText myEditTextPassword = findViewById(R.id.editTextPassword);
+                    jsonObject.put("email", myEditTextMail.getText().toString());
+                    jsonObject.put("password", myEditTextPassword.getText().toString());
+                    jsonObject.put("device", "android8");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -154,7 +154,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loginUser(JSONObject userData) {
         client = new OkHttpClient();
-
+        Log.i("API", userData.toString());
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), userData.toString());
         Request request = new Request.Builder()
                 .url("http://192.168.1.13:8080/auth/login") // Remplacez par l'adresse IP de votre machine hôte
@@ -198,10 +198,6 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         } else {
                             Log.e("API", "Error response body: " + responseBody);
-                            EditText myEditText = findViewById(R.id.editTextTextEmailAddress);
-                            myEditText.setBackgroundResource(R.drawable.shape_typing_error);
-                            EditText myEditTextPass = findViewById(R.id.editTextPassword);
-                            myEditTextPass.setBackgroundResource(R.drawable.shape_typing_error);
                         }
                         response.close();
                     }
